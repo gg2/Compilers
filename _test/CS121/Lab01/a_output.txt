@@ -1,7 +1,0 @@
-Script started on Thu 22 Jan 2015 03:04:20 PM PST
-[?1034hbash-4.1$ ./.[Ka.out
-Hello, CS 121 Lab #1!
-bash-4.1$ exit
-exit
-
-Script done on Thu 22 Jan 2015 03:04:35 PM PST

@@ -1,9 +1,0 @@
-﻿CS121 Lab13
-Journal
-
-20150429
-20:30-10:30 > Reviewing suggested programs, testing them out. sortLines doesn't work -- compiles, after replacing the printf statement, and runs, but just hangs. Anyway, the void * thing when declaring an array and when passing something in to a function is new.
-
-201504230
-14:20-15:08 > Finding out if the old lab #8 files still compile. It's not Lab #8, it's Lab #10... And, yes, fortunately, those are fine. 
-15:37-16:15 > Switching in a single function to then call either filter above or below. Not bothering with destructive vs non-destructive, because that's rather pointless beyond making one function to sort out all of that, and ... I don't see how to do that using function pointers since the signature has to match, and the 2 ways of handling the array seem mutually exclusive to me. Finished, ran it, etc...
