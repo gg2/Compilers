@@ -1,0 +1,27 @@
+﻿Lab 04 Journal
+
+2015 Feb 9
+@ 10:30-12:15 Read through program specs; listed initial thoughts on design requirements; began stubbing process
+
+2015 Feb 11
+@ 10:30-11:15 Continued stubbing process; began writing out routine to process input
+
+2015 Feb 12
+14:15-16:40 Stubbing stack.h; created linked list .h and .cpp, and node .h and .cpp. 
+16:40-18:30 Fleshing out stack.h; Reviewed how stack needs to work; Figured out extent of issues that can be caused by an empty stack, and where an empty stack should be checked for (whose responsibility is it, in order to avoid a problem, without more robust error reporting).
+18:30-19:45 Implementing the functions in the calculator class, RPNCalc.
+19:45-20:15 Filling in remainder of the main application file; Determining extra functions that RPNCalc needs, since I created it as a class separate from the main file running the "interface" and I needed ways to access the top of the stack, etc.
+
+2015 Feb 13
+@ 10:40, 11:30-11:45 Test compile of everything; started separate file to test linkedlist class.
+
+2015 Feb 15
+19:00-21:30 Finished file to test linkedlist class; sorting out issues with NULL suddenly being "undefined"; sorting out how includes need to be handled; sorting out namespace issues with cstdlib and that "using" statements are not carried across to included files; figuring out (again!) that this version of GCC does not handle to_string() and that I have to use <sstream> options; handling issues with displaying appropriate amount of precision for doubles, and where that should be handled.
+21:45-22:30 Created test file for Stack class; sorting out namespace and include file issues, yet again. 
+22:40-23:50 Straightening out include files for RPNCalc class; straightening out kinks in RPNCalc; changing and making consistent the fashion in which I'm calling for and printing out values (always as string, output by calling program vs letting called program output it directly); correcting some absent-minded mistakes in the class.
+23:50-00:54 Sorting out issues with main program; absent-minded mistakes in calling the RPNClass; std::cin does not work for accepting input, because it automatically does something undesirable when encountering the spaces; caught issue with original processing loop -- wasn't acting on last command because I was relying on hitting spaces to make that happen; so, had to break it all up into two loops -- one to parse and store input, other to act upon that input. Looks functional!
+
+2015 Feb 16
+00:56-01:26 Testing results; needed to restrict square root operation to positive numbers.
+
+Total: 14.75 hrs

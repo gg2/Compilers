@@ -1,0 +1,25 @@
+Race to Goldbeard's Island
+You and a friend find a map to Goldbeard's treasure. But, both of you want the treasure for yourselves! You each set sail immediately to be the first to claim the treasure. Press enter to roll the die and move your boat forward along the route to Goldbeard's Island. But, beware! The trials along the way to claiming Goldbeard's treasure will test your resolve, and may break your will - sending you scurrying to the safety of home!
+_Goldbeard's Island_
+ is the first to reach Goldbeard's island. They nab all the treasure for themself!!!
+2
+0 0 +3 ~ 
+1 0 0 ~ 
+2 -1 0 < Your boat is pushed back by strong winds.
+3 0 0 ~ 
+4 0 -1 x There's some dead fish in the water.
+5 +1 +1 ^ You masterfully handle some choppy water.
+6 0 0 ~ 
+7 0 0 ~ 
+8 0 0 ~ 
+9 0 0 ~ 
+10 -4 -2 - The winds go calm. You are stuck rowing until they pick up again.
+11 0 +1 > The clouds look beautiful here.
+12 20 0 @ You misunderstood one of the clues on the map!
+13 +2 0 / You find a great current to ride, and sail along at a fine clip.
+14 0 0 ~ 
+15 0 0 ~ 
+16 0 0 ~ 
+17 20 -1 @ Your compass is all screwy, and you go off course.
+18 0 0 ? Is that an island in the distance? Or a mirage?
+19 0 0 ~ 

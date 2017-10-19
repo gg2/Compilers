@@ -1,0 +1,60 @@
+﻿CS121 Sec 3
+Lab 04
+Gabe Gibler
+
+Reverse Polish Notation (RPN) Calculator
+_______________________________________
+
+Program Design
+--------------
+
+* All numbers as <double>;
+* No specification on how errors are to be handled;
+
+Loop continuously until "quit" command entered;
+Always display top of stack in command prompt;
+Read strings from input;
+If is number, push to stack;
+If is operator, pop appropriate # of items from stack (2 by default, apparently; sometimes 1), perform operation, push result to stack;
+
+Calculator
+	Stack object
+	
+	top(): to print out top of stack
+	store(): to save input to the stack for calculations
+	
+	add
+	subtract
+	multiply
+	divide
+	sq
+	sqrt
+	dup
+	swap
+	ps (aka print stack)
+	quit
+
+Stack
+	LinkedList object
+
+	push(): add an item to the stack
+	pop(): retrieve and delete top item from the stack
+	getTop(): return value of last item added to stack
+	print(): return listing of values of each item in stack
+	count(): returns number items on the stack; more useful for error-checking than a simple "is it empty?"
+
+Linked List 
+	head: pointer to node object
+	count: number of nodes in list
+	Node objects
+	
+	getCount(): returns count
+	insert(): add new node to list
+	remove(): delete node from list
+	getLast(): return data from most recently added node
+	list(): return listing of values of each item in list
+
+Node
+	data: data stored in this node
+	next: next node in the list; NULL if is the last
+	

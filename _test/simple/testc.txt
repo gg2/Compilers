@@ -1,0 +1,14 @@
+#include "testd.txt"
+
+bool _abcdefghijklmnopqrstuvwxyz = true;
+
+string schnoggins = "This is a string.";
+string mehrschnoggins = "This is a paragraph. Watch me type. Type, Ubu, type!\n
+This is a 2nd paragraph, but this is still the same string. What happens with really long strings?\n";
+
+char a = 'a';
+char b = 'b';
+char c = 'z';
+char x = '\0';
+char y = '\"';
+char z = '\'';

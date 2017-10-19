@@ -1,0 +1,26 @@
+﻿CS121
+Lab11
+Gabe Gibler
+
+Journal
+
+20150411
+13:20-14:05 > Writing out program specs. Cleaning up info in tvDB.txt, since not all movies have genres, and the genre is in the wrong place on some. MacGyver is duplicated also, so deleted the duplicate. Time to utilize other data structures appropriately, i.e. actors -> linked list, function results -> linked list. Finished program design.
+14:20-15:00 > Gathered up include files. Fleshed out data structures. Testing compilation before anything else.
+
+20150413
+8:30-11:20 > Starting yet again to sort out and organize how types and typedefs and object references and #includes all need to be handled, if encapsulation is the goal. Trying to sort out how the data type for the tree node needs to be handled, if I'm to keep the tree structure generic. Looking into #includes, forward declarations, templates, etc.
+21:02-21:47 > I just have to go the low road for now and make it work. Data type, populating the tree, everything handled in specialized tree. I guess that's the point, now that I'm getting down to it: specialized functions within the search tree class. Backing everything out so that I can do this the lowest-brow fashion possible to actually get it done -- making searches specialized per piece of data, and passing large numbers of parameters to the function to add a node.
+
+20150415
+10:50-11:30 > Fleshing out AddNode function. Further investigating issues with passing objects around.
+20:00-21:50 > Creating test file to test passing linkedlist objects to functions. Creating ToString() functions in my utility file to remove this lack of string conversion bullshit. Updating linkedlist with proper (hopefully) destructor. Testing out test program. Lots of compiler errors. Sort out compiler errors, and get test working. It works, except returns a segmentation fault while cleaning up: linkedlist destructor doesn't work -- returns a segmentation fault at the very end, after seemingly successfully finishing the while loop with (size() > 0) returning false. ???
+21:50-23:53 > Finished filling out AddNode(). Writing out the section for gathering the input from the file. Figuring out how to differentiate the entries pertinent to one movie, and how to differentiate the title from the years, since they're obnoxiously entered on one line. (It would be vastly faster to edit the input file and expect them to be read in that way.)
+23:53-23:59 > Filling out the stages of reading from the file. Oh, that's right: getline can be given a specific delimiter, so I can easily read through the pieces of the first line containing the title and years (assuming it works without error and accepts strings, otherwise more rigamarole...).
+
+20150416
+00:00-00:37 > Reading data from the file nominally written. Still needs to be tested, once I get it written to the tree.
+14:57-16:19 > Testing... Troubleshoot getline. Must send a stream to getline, not strings. Realizing that the data file is going to be a cluster fuck, because  I can't easily edit it, and it is extremely inconsistent (double spaces, 1 hyphen between years vs en-dash otherwise -- which I can't even fucking type in PuTTY). Now there's a cross initialization error -- have to initialize stringstream for getline outside of switch. Finally, get to actually run the program, and it reads the first line 3+ times. Fantastic. 
+16:20-16:21 > Well, doesn't appear to be caused by editing the input file locally on Windows, since the original version saved to the server does the same thing. So much for working with trees!
+
+

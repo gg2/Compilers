@@ -1,0 +1,139 @@
+﻿CS 120
+Terry Soule
+http://www2.cs.uidaho.edu/~cs120/f14/soule/index.html
+http://www2.cs.uidaho.edu/~cs120/f14/soule/code/
+https://online.vitalsource.com/signin?return=/books/9781465213280/pages/99507827
+http://www2.cs.uidaho.edu/~tsoule
+
+Putty Settings: 
+HostName: wormulon.cs.uidaho.edu
+Port: 22
+ConxType: SSH
+_____
+
+
+2014/08/25
+Class Assignments: weekly, Monday.
+Labs: in lab; can be done and turned in at beginning of lab;
+
+CSAC (CS Assistance Center)
+in JEB
+
+Scratch?
+IDE Suggestions: Text Editor/Compiler on UI Labs; Netbeans;
+Compilers and text editors
+
+> Get Putty from 
+/its/software
+! Will get accounts on Wed.
+Nano on Unix
+---
+
+2014/08/27
+
+Unix Commands:
+http://www2.cs.uidaho.edu/~cs120/f14/soule/Manual.pdf
+[on manual.pdf] 
+
+---
+
+2014/09/03
+
+---
+
+2014/09/05
+
+WinSCP (vs PuTTY)
+cscheckin
+cscheckin -f [FILENAME] -c cs120
+cscheckin -s //check status of files
+
+---
+
+2014/09/17
+
+Program Errors & Debugging
+• Compiler Errors (syntax errors)
+• Run-time Errors (cause crashes)
+• Logic Errors (program doesn't produce expected output)
+
+---
+
+2014/10/20
+reading: @ pg 30
+
+---
+
+2014/10/27
+Base X says how many digits you have to have.
+Base 10 means you need 10 digits: 0-9
+digit x pow(base,exp) where exp is the iteration
+
+---
+
+2014/10/29
+
+CursWin.h and CursWin.cpp
+— grab code and create files
+
+#include"CursWin.h"
+
+cout --> Cout
+— Cout sends to a specified "window" object
+— accepts both input and output (replaces cout && cin)
+e.g.:
+int function(CursWin &cMenu, CursWin &cInput) {
+	// ...
+	cMenu << "Exit (0)" << endl;
+	cInput >> Cfilter(0,2) >> choice;
+	return choice;
+}
+
+inputWin >> cForce;
+...
+inputWin >> [data];
+
+CursWin::CursWin(oX,oY,dX,dY); // Sets upper and lower borders; space between == working area
+
+endl --> cendl || cflush
+— flush buffer to window
+
+include no <iostream> functions when using CursWin (or Curses) (except maybe cin.ignore())
+
+Cmove(X,Y);
+— place cursor at coords
+
+g++ calc.cpp CursWin.cpp -lcurses
+
+2014/11/05
+
+dynamic memory allocation
+dimensioning array via variables ( int array[width][height]; )
+passing multidimensional array to function ( void display(int *a[]) {...} )
+
+2014/11/17
+
+tar -cvf filename.tar file01.cpp file02.h file03.h
+
+2014/12/03
+
+int *p;
+p = new type; // <-- Is a new var of type, but elsewhere in memory, w/ p pointing to it.
+
+int num;
+cin >> num;
+for (i=0; i<num; i++) {
+	p = new int; // <-- but each previous new int gets lost; no pointer to it anymore.
+}
+
+... thus, linked lists.
+class node {
+	private:
+		type data;
+		node *next; // <-- where next stores the address of the next node in the list
+	public:
+		void set_data(type x) {data = x;}
+		int get_data() {return data;}
+		void set_next(node *n) {next = n;}
+		node *get_next() {return next;} // <-- must be sent &node_object
+};

@@ -1,0 +1,136 @@
+Script started on Thu 29 Jan 2015 04:45:31 PM PST
+[?1034hbash-4.1$ ./Lab02.out
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+
+Insufficient command line arguments provided.
+(A minimum of 3 arguments must be supplied.)
+
+bash-4.1$ ./Lab02.out 1 + 2
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+args[1]: 1
+args[2]: +
+args[3]: 2
+
+1 + 2 == 3
+bash-4.1$ ./Lab02.out 1 + 2[K[K[K[K[K1[K-1 + -2
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+args[1]: -1
+args[2]: +
+args[3]: -2
+
+-1 + -2 == -3
+bash-4.1$ ./Lab02.out -1 + -2[K[K[K[K[K[K[K0 + -50
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+args[1]: 0
+args[2]: +
+args[3]: -50
+
+0 + -50 == -50
+bash-4.1$ ./Lab02.out 0 + -50[1P50[1P50[1P50-50 50[C[C
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+args[1]: 0
+args[2]: -
+args[3]: 50
+
+0 - 50 == -50
+bash-4.1$ ./Lab02.out 0 - 50[K[K[K[K[K[K50- [K[K - 0
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+args[1]: 50
+args[2]: -
+args[3]: 0
+
+50 - 0 == 50
+bash-4.1$ ./Lab02.out 50 - 0[K[K[K[K[K[K50 =[Kx 0
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+args[1]: 50
+args[2]: x
+args[3]: 0
+
+50 x 0 == 0
+bash-4.1$ ./Lab02.out 50 x 0[K[K[K\* 1
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+args[1]: 50
+args[2]: *
+args[3]: 1
+
+50 * 1 == 50
+bash-4.1$ ./Lab02.out 50 \* 1[K[K[K[K/ 0[K1
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+args[1]: 50
+args[2]: /
+args[3]: 1
+
+50 / 1 == 50
+bash-4.1$ ./Lab02.out 50 / 1[K[K[K[K[K[K1234567890 = [K[K/ 1.0
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+args[1]: 1234567890
+args[2]: /
+args[3]: 1.0
+
+1.23457e+09 / 1 == 1.23457e+09
+bash-4.1$ ./Lab02.out 1234567890 / 1.0[K[K[K0
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+args[1]: 1234567890
+args[2]: /
+args[3]: 0
+
+! division by zero >> Lab02-CalculateArgs.cpp, function calculate().1.23457e+09 / 0 == 0
+bash-4.1$ ./Lab02.out 1234567890 / 0[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K 8838e8e garbagee[K mmm
+
+Command Line Arguments: 
+Using in a Calculation
+
+args[0]: ./Lab02.out
+args[1]: 8838e8e
+args[2]: garbage
+args[3]: mmm
+
+! unsupported operator provided >> Lab02-CalculateArgs.cpp, function calculate().8.838e+11 garbage 0 == 0
+bash-4.1$ exit[K[K[K[K./Lab02.out 8838e8e garbage mmm[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kexit
+exit
+
+Script done on Thu 29 Jan 2015 04:48:28 PM PST

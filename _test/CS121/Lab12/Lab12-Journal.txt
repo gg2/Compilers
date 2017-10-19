@@ -1,0 +1,17 @@
+﻿CS121
+Lab12
+Gabe Gibler
+
+20150420
+8:20-9:12 > Grabbing and setting up files. Reading through lab. No idea what half of it is talking about... Analyzing hash.h/.cpp.
+9:12-9:34 > Inserting chunk to read in from file. Testing that it reads and outputs.
+
+20150423
+20:34-21:37 > Analyzed the hash files to figure out what is actually happening. 
+21:37-22:58 > Wrote out and tested the function to count bucket sizes and print them, along with the largest and smallest sizes.
+23:10-23:40 > Write out loop for accepting string input, and then search for it in the hash table. Testing text input and search.
+23:41-00:02 > Running through hash table sizes and creating output for lab.
+
+
+20150424
+00:02-00:08 > Wrapping things up. No real problems encountered this time, except that C++ is retarded because it treats const as though it makes a new type rather than simply being an access modifier. Couldn't send std::string.c_str() to the hash table functions because it output a "const char*" rather than "char*" ... really!!? Anyway, not a big deal (thank you, Google).

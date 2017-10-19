@@ -1,0 +1,37 @@
+Script started on Thu 29 Jan 2015 03:06:44 PM PST
+[?1034hbash-4.1$ ./Lab02.out
+
+Command Line Arguments
+
+args[0]: ./Lab02.out
+Insufficient command line arguments provided.
+(A minimum of 3 arguments must be supplied.)
+bash-4.1$ ./Lab02.out -arg1 -arg2 -arg.[K3 -arg34[K[K4
+
+Command Line Arguments
+
+args[0]: ./Lab02.out
+args[1]: -arg1
+args[2]: -arg2
+args[3]: -arg3
+args[4]: -arg4
+Minimum number of command line arguments provided.
+(A minimum of 3 arguments must be supplied.)
+Converted argument to int: 0
+Converted argument to float: 0
+bash-4.1$ ./Lab02.out -arg1 -arg2 -arg3 -arg4[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K1[K36.667 48.889 50.001
+
+Command Line Arguments
+
+args[0]: ./Lab02.out
+args[1]: 36.667
+args[2]: 48.889
+args[3]: 50.001
+Minimum number of command line arguments provided.
+(A minimum of 3 arguments must be supplied.)
+Converted argument to int: 36
+Converted argument to float: 50.001
+bash-4.1$ s[Kexit
+exit
+
+Script done on Thu 29 Jan 2015 03:09:50 PM PST

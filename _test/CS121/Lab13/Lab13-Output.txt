@@ -1,0 +1,84 @@
+Script started on Thu 30 Apr 2015 04:10:54 PM PDT
+[?1034hbash-4.1$ exit./sortLines test.txt[Kg++ sortLines.cpp -o sortLines[C[C[C[C[C[C[C[C[C[Cls[Krm a.outls[Krm a.outls[Kg++ sortLines.cpp -o sortLines[C[C[C[C[C[C[C[C[C[C[19P./sortLines test.txt[C[C[C[C[C[C[C[C[C[Cexit[K[Kg++ filterA.cpp utility.cpp -o filetr[K[K[KterA
+g++: filterA.cpp: No such file or directory
+bash-4.1$ .[Kpwd
+/home/gibl3465/CS121/Lab13
+bash-4.1$ ls
+calcFP	     filterA	  Lab13_FunctionPointers.pdf  numbers.dat    test2.txt
+calcFP2      FilterA.cpp  Lab13-Output.txt	      sortLines      test.txt
+calcFP2.cpp  filterL	  linkedlist.cpp	      sortLines.c    utility.cpp
+calcFP.cpp   FilterL.cpp  linkedlist.h		      sortLines.cpp  utility.h
+bash-4.1$ g++ FilterA.cpp utility.cpp -o filterA
+bash-4.1$ g++ FilterA.cpp utility.cpp -o filterA[KL[1P[1@)[1P[1@L[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@ [1@l[1@i[1@n[1@k[1@e[1@d[1@l[1@i[1@s[1@t[1@.[1@c[1@p[1@p[C[C[C[C[C[C[C[C[C[C[C
+bash-4.1$ ./filet[K[KterA
+
+* * * * * * * * * *
+Filtering Data Using Function Pointers
+
+* * * * * * * * * *
+Array contains: 9 7 2 7 3 7 3 4 7 1 
+Filtering out values greater than 5 ... 
+Original array, post-filtering: 2 3 3 4 1 
+
+Array contains: 9 1 6 5 4 4 7 2 6 3 
+Filtering out values less than 5 ... 
+Original array, post-filtering: 9 6 5 7 6 
+
+
+* * * * * * * * * *
+bash-4.1$ ./filterA 20 3 7
+
+* * * * * * * * * *
+Filtering Data Using Function Pointers
+
+* * * * * * * * * *
+Array contains: 8 3 5 6 5 0 6 8 0 8 3 8 1 0 9 7 6 7 2 8 
+Filtering out values greater than 3 ... 
+Original array, post-filtering: 3 0 0 3 1 0 2 
+
+Array contains: 1 9 9 7 1 1 3 4 7 1 4 5 6 0 4 1 2 2 1 2 
+Filtering out values less than 7 ... 
+Original array, post-filtering: 9 9 7 7 
+
+
+* * * * * * * * * *
+bash-4.1$ ./filterL
+
+* * * * * * * * * *
+Filtering Data Using Function Pointers
+
+* * * * * * * * * *
+List contains: 5 8 1 0 2 3 1 7 7 2 
+Filtering out values greater than 5 ... 
+Original list, post-filtering: 5 1 0 2 3 1 2 
+
+
+List contains: 1 6 8 0 1 5 3 5 6 4 
+Filtering out values less than 5 ... 
+Original list, post-filtering: 6 8 5 5 6 
+
+
+
+* * * * * * * * * *
+bash-4.1$ ./filterL 20 3 7
+
+* * * * * * * * * *
+Filtering Data Using Function Pointers
+
+* * * * * * * * * *
+List contains: 7 6 8 8 1 9 6 9 9 1 7 2 2 8 5 4 9 0 5 8 
+Filtering out values greater than 3 ... 
+Original list, post-filtering: 1 1 2 2 0 
+
+
+List contains: 2 5 4 8 3 6 3 8 5 1 1 7 8 8 3 6 5 3 3 0 
+Filtering out values less than 7 ... 
+Original list, post-filtering: 8 8 7 8 8 
+
+
+
+* * * * * * * * * *
+bash-4.1$ exit
+exit
+
+Script done on Thu 30 Apr 2015 04:13:48 PM PDT

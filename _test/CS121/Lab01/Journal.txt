@@ -1,0 +1,12 @@
+Journal Lab #1
+
+up to 14:45 > lab intro; finding out where the lab assignment is; logging into the forum and downloading the assignment
+
+14:48 > Making first log entry after reading some of the lab basics.
+
+14:56 > Steps 1-8, as well as mirroring and managing on my own laptop; starting program1.cpp
+
+15:05 > Created, compiled, and ran program1.cpp; scripted output, and performed list command and now recording it in hw1.
+
+15:08 > Zipping and emailing the requested files.
+

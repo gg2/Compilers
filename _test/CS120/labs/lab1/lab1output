@@ -1,0 +1,19 @@
+Script started on Thu 04 Sep 2014 03:03:00 PM PDT
+[?1034hbash-4.1$ ./fourten[K[K[K[K[Krht[K[Ktune.cpp[K[K[Kout
+I am the Fortune Teller. I will tell you your (immediate) future.
+Please, have a seat... 
+Enter your favorite number (no decimals): 8
+Enter a number you don't like (no decimals): 2
+
+Today, your lucky number is: 6
+Today, will be a very exciting day for you. Things are looking up!
+Press enter to quit.
+
+bash-4.1$ pwd
+/home/gibl3465/labs
+bash-4.1$ ls
+fortune.cpp  fortune.out  lab1output
+bash-4.1$ exit
+exit
+
+Script done on Thu 04 Sep 2014 03:03:21 PM PDT

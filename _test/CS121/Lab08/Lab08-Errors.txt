@@ -1,0 +1,55 @@
+/* 
+ * Gabe Gibler
+ * CS121 Sec 03
+ * Lab #8 
+ * 2015/03/26
+ *
+ */
+
+1) Upon compiling, there are "incompatible implicit declaration of built-in function ..." and then variably "strlen" and "strcpy".
+Fix: Insert the following statement @ line 12: 
+#include<string.h>
+
+The functions that the compiler is complaining about are in the string.h file.
+
+
+2) Checking variables prior to jumping into reverseIt, stringBuffer is only the length of the contents of argv[1] (the string passed from the command line).
+Fix: Correct the statement @ line 36, 
+from:  stringBuffer = malloc( strlen(argv[1]) ); 
+to:    stringBuffer = malloc( strlen(argv[1]) + 1 );
+
+malloc() is sent an insufficient length. It needs to be increased by 1 to account for the null character when working with C-style strings.
+
+
+3) Upon running the program with a string argument, the program's output is always "the reversed string is '(null)'".
+Fix: Correct the statement @ line 37, 
+from:  strcpy( argv[1], stringBuffer ); 
+to:    strcpy( stringBuffer, argv[1] );
+
+argv[1] went in with the value from the command line, but left empty, and stringBuffer never changed from empty.
+The arguments to strcpy were reversed, and needed to be supplied in the other order.
+
+
+4) The program's output is still "the reversed string is '(null)'".
+Fix: Correct the statement @ line 61, 
+from:  stop = stringbuffer + strlen(stringbuffer) + 1;
+to:    stop = stringbuffer + strlen(stringbuffer);
+
+stop is ending up 1 memory space past the null character that ends stringbuffer. Upon testing it appearred null, but incrementing it [-1] was still null, and incrementing it [-2] and so on finally hit the characters in stringbuffer.
+
+
+5) Getting a segmentation fault now.
+Fix: Correct the statement @ line 43, 
+from:  printf( "the reversed string is '%s'\n", *stringBuffer );
+to:    printf( "the reversed string is '%s'\n", stringBuffer );
+
+printf accesses pointer, not the actual value.
+
+
+6) stringBuffer and node (within the function reverseIt) are not deallocated.
+Fix: Insert the following statement before line 45, 
+free( stringBuffer );
+Fix: Insert the following statement before line 97, 
+free( node );
+
+Those variables were both allocated using malloc during program execution. So, they should be deallocated using free().

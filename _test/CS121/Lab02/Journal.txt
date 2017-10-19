@@ -1,0 +1,41 @@
+Lab Questions Answered:
+
+1) What is the first argument? 
+--> The first argument is the command that executed the program.
+2) What is the last argument? 
+--> If no arguments are provided on the command line, there is no other argument; otherwise, it is the last argument provided on the command line.
+3) What happens when an argument is of the wrong type upon conversion? 
+--> The argument is converted to the default for whichever conversion: 0.
+4) Does the program handle all basic mathematical operations? 
+--> Yes, it does; and will accept multiple ways of asking to add, subtract, etc. However, "*" must be escaped. Also, the program does not handle buffer overflows or issues of precision.
+
+_____________
+
+Lab 2 Journal
+
+2015/01/26
+10:43 > Reading lab requirements
+
+11:15 > Wrote out basics of program through step 1; experimenting with argv,argc requirements; looking up how argv,argc work
+// Rearranging main arguments: must be (int, char)
+// argv as single pointer (*argv[] vs **argv[]): *argv[] is fine
+// printMainArgs:
+// 	Trying parameters w/o array brackets: only printed out first literal char
+// 	Passing argv as 'argv' (no pointer notation; no array notation) while accepting parameter *args[]: compiles ... and prints entire "variable" as desired (vs singular char)
+// 	Must have array notation for args or will accept **args: **args compiles ... and creates desired output
+
+11:50-12:04 > Experimenting further with argv as **argv, *argv[], and passing that to a function -- how the function will accept it: **arg, *arg[] <-- both work
+
+2015/01/28
+10:40-11:20 > Adding in step 2, to check number of arguments.
+
+11:40-12:10 > Adding in step 3, to convert arguments. Using atoi and atof for the job.
+
+2015/01/29
+14:39-15:04 > Reviewing where I am and making sure the questions are answered; messing around with outputting a "minimum number of command line arguments" statement (int to string conversion and concatenation issues)
+
+15:49 > Creating the calculation function and output; making it work now
+
+16:21 > Tried making the operator parameter work as a c-style string, but I couldn't, so I just accept a string, and send the command line argument at it as-is. 
+	Now everything works. However, noting that "*" must be escaped (entered as "\*") in order to be accepted, otherwise I get a set of arguments that are a listing of the current directory's contents.
+16:25 > Scripting some example output, and then zipping everything up and finishing up.

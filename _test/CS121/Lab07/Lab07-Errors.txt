@@ -1,0 +1,50 @@
+/* 
+ * Gabe Gibler
+ * CS121 Sec 03
+ * Lab #7 
+ * 2015/03/12
+ *
+ */
+
+1) Upon compiling, there are "incompatible implicit declaration of built-in function ..." and then variably "strlen" and "strcpy".
+Fix: Insert the following statement @ line 12: 
+#include<string.h>
+
+The functions that the compiler is complaining about are in the string.h file.
+
+
+2) The variable stringbuffer is never released (especially per the documentation on line 7).
+Fix: Insert the following statement after line 44: 
+free(stringbuffer);
+
+This will free the memory dynamically allocated during program execution (@ line 36).
+
+
+3) a) Upon running the program with a string argument, the program's output is always "the reversed string is '(null)'".
+Fix: Correct the statement @ line 37, from: 
+strcpy( argv[1], stringBuffer ); 
+to: strcpy( stringBuffer, argv[1] );
+
+The arguments to strcpy have been reversed, and need to be supplied in the other order.
+
+b) The reversed string is now being returned as an empty string (after fixing error #4).
+Fix: In the reverseIt function, @ line 61, remove the + 1.
+
+The variable stop is assigned a value that is one too long. It is unnecessary to add one to reach the null terminating character, because stop already starts at the first spot when it is assigned stringbuffer, and so jumping the length of stringbuffer leaves it at the null terminating character.
+
+
+4) Upon running the program, there is a segmentation fault.
+Fix: Correct the following statement @ line 36, from: 
+stringBuffer = malloc( strlen(argv[1]) ); 
+to: 
+stringBuffer = malloc( strlen(argv[1]) + 1 );
+
+malloc() sent an insufficient length. It needs to be increased by one to account for the null character when working with C-style strings.
+
+
+5. In the reverseIt function, @line 96, head is freed. Shouldn't node be freed as well? Head and node both end up pointing to the same place, and both should be NULL by the time it's done, so if head needs to be freed, doesn't node? 
+Fix: Insert the following statement after line 96:
+ free( node );
+
+It doesn't seem to hurt, anyway.
+

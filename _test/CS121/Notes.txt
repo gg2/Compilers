@@ -1,0 +1,904 @@
+http://www2.cs.uidaho.edu/~bruceb/cs121/Syllabus/spring15.html
+http://www2.cs.uidaho.edu/~bruceb/General/codeStyle.html
+http://www2.cs.uidaho.edu/~bruceb/cs121/cs121_prog_assignments.html
+https://forums.cs.uidaho.edu/
+
+______________
+
+brandon.ortiz@vandals.uidaho.edu
+
+For Labs:
+
+Keep a journal of time management, difficulties, etc.
+Maintain program comments
+
+Email labs as ZIP
+______________
+
+20150116 (Fri)
+Dynamic Memory Mgmt
+
+Support for dynamic memory mgmt:
+* explicit programmer control (C/C++)
+* environment-controlled (Java/C#/Scheme)
+* combination (objective-C)
+
+--> requires considerable attention by the programmer
+
+Pointers
+& - Address of operator
+* - Dereference operator
+--> machine/compiler dependencies exist
+
+int* p, q; // does not declare both p && q as pointers
+int *p, *q; // does, but ...
+int *p; // is preferred declaration style
+int *q;
+
+Memory Allocation: Static vs Dynamic
+* Memory for pointer variables is allocated at compile time aka static allocation
+Such vars are statically allocated variables.
+
+* Memory allocated at run time (during execution) is dynamic allocation
+Such vars are dynamically allocated variables.
+
+Arrays && Pointers
+arrays != pointers
+
+Reason to use pointers:
+Arrays: fixed size, homogenous (same type), access items using an index (range 0... N-1), stored in contiguous memory locations
+[vs]
+Linked Lists: dynamic (change at run time), homogeneous, access items using pointers, not necessarily stored in contiguous memory locations
+
+--> C uses FILE * as a file pointer
+
+______________
+
+20150121 (Wed)
+Dynamic Memory Allocation
+
+--> keyword: new
+
+int *P = new int;
+
+no name (i.e. variable name); can only access contents via the pointer
+
+Must remember to release memory.
+--> keyword: delete
+
+delete P;
+
+> Static Arrays
+const int A_SIZE = 50;
+int A[A_SIZE];
+
+*A ~ A[0]
+*(A+1) ~ A[1]
+
+> Dynamic Arrays
+int A_SIZE = 50;  // ! <-- not a constant
+int *pIArr = new int[A_SIZE];
+
+To release:
+delete [] pIArr;
+
+______________
+
+20150123 (Fri)
+Intro to Structures
+
+struct (C)
+* Group related items together
+* Machine/compiler dependencies exist (structure alignment)
+* Unnecessary if classes are used
+
+dot (.) notation (for struct and classes)
+
+ex: 
+struct fraction  // definition
+{
+	int numer;
+	int denom;
+}
+
+typedef struct fraction Fraction; // typedef defines the new data type
+
+______________
+
+20150126 (Mon)
+
+Morse Code
+	problem of translating morse code to chars
+Converting Int to Char
+	* ASCII table
+	* Switch statement
+	* If/Else
+	* char Arithmetic: '0' + n;
+	* Lookup table / char array
+
+______________
+
+20150128-20150130 (Wed)(Fri)
+
+Dynamic Data Structures:
+* Linked Lists
+* Stacks
+* Queues
+* Trees (non-linear data structure)
+
+> Linked Lists: definition; that each node is dynamically created;
+	* is a primitive data type
+	* simpler to use a dedicated head pointer; adds layer of difficulty to use a node itself as the head... ?
+	* common methods: print, size/length, insertion, deletion <-- all involve traversing the list
+	* Insert new nodes: front? organized (sorted/middle)? back?
+	* Inserting nodes: 1) allocate; 2) initialize; 3) insert;
+	* Deletion: front? back? matching condition? (Why are we deleting arbitrarily from front/back?)
+	* Deleting nodes: 1) find node; 2) Update (break) links (in deleted node, set next = NULL); 3) Release memory of deleted node;
+	
+
+______________
+
+20150202-20150204 (Mon) (Wed)
+
+Objects
+* representation in software of some real entity
+* object implementation is language dependent: structs (records), classes
+	structs: traditionally data only, access is public
+		* structs are often defined in header files
+	classes: contain methods for manipulating underlying data
+		* classes (or pseudo-classes) are often defined in 2 files:
+			1) Interface = defines the contents and manipulation (.h <-- C++)
+			2) Implementation = defines the code to manipulate the object (.cpp <-- C++)
+* C++ uses classes; can simulate OOP in other languages
+
+examples, via geometric shapes ...
+g++ TestCircle.cpp circle.cpp
+! circle.h? processed when TestCircle.cpp and circle.cpp are compiled.
+do not include .h files in the command to compile
+
+______________
+
+20150206 (Fri)
+
+Linked Lists:
+* An item can be removed from the list without moving other items (handling memory).
+* Other abstract data types can be implemented using lists: stacks, queues, trees
+
+Implementation of linked lists:
+> Interface - usually defined in a .h
+> Implementation - defines behavior specified in the interface
+
+Access control:
+> public - accessible outside class
+> private - accessible inside class only
+> protected - private, but inherited classes can access
+
+______________
+
+20150211-20150213 (Wed)(Fri)
+
+Stacks
+Where used?
+* A stack of activation records are maintained when a program is executed.
+* Compilers often use stack of symbols when parsing source code.
+* Simulate recursion (can be faster).
+* Graphics (transformation matrices)
+* Calculators (esp. RPN)
+* Programming languages (argument passing, postscript, forth, Java VM)
+* Determining well-paired brackets
+
+Standard operations:
+* .push( var ) -- add new item to top of stack
+* .pop() -- remove item at top of stack
+* .peek() -- return item at top of stack
+
+Composition - ex. implement a stack class using an existing list class.
+Less code needs to be written.
+
+______________
+
+20150218 (Wed)
+
+Queues
+
+-- a list in which all additions are made at one end, and all deletions are made at the other.
+* FIFO data structure
+* enqueue / dequeue -- adding and removing items from a queue
+Where used?
+* process scheduling
+* simulation (shopping, banks, etc)
+* processor queues
+* OS event processing
+* communication (I/O)
+* printing
+* multimedia
+* general resource management in many apps
+
+Common implementations:
+* array
+* linear linked list
+* circular array
+* circular linked list
+
+! Utilize Enqueue / Dequeue as method names (standard) vs Insert / Delete / etc.
+
+______________
+
+20150220 (Fri)
+
+C
+
+* include the .h on #includes --> <stdio.h>
+ifstream / ofstream
+FILE *
+fopen(filename, method), method = {"r", "w", "b"}, r == read, w == write, b == binary
+
+scanf, fscanf, sscanf (read, read from file, read from string)
+
+______________
+
+20150225 (Wed)
+
+Software development methodologies:
+- Agile Software Development
+- Test Driven Development (TDD)
+- Extreme Programming (XP)
+- Coad's Feature Driven Development (FDD)
+- Open Source
+- Scrum
+- The New Methodology
+
+(ref. Martin Fowler)
+
+______________
+
+20150227-20150302 (Fri)(Mon)
+
+Recursion
+
+Function that uses itself, or is defined in terms of itself
+
+How does it use time and memory?
+Memorization - save previous result to refer to, helps save time -- by not calculating
+(Lookup is generally faster than computation.)
+
+struct treeNode {
+	int data;
+	TreeNode *left;
+	TreeNode *right;
+}
+
+* Stacks can be used to simulate recursion
+
+______________
+
+20150306 (Fri)
+
+Extending Classes
+
+// Point of extending: to add ability to set and get value of array at index.
+class ExtendedArray : public Array // Extending an existing dynamic Array class
+{
+	public:
+		ExtendedArray( int nE );
+		~ExtendedArray
+		
+		int Get( int i); // "Accessor"
+		void Set( int i, int val ); // "Mutator"
+}
+
+ExtendedArray::ExtendedArray( int nE ): Array(nE) // <-- inheriting a specific element again
+{
+	// A = new int [nE];
+}
+
+______________
+
+20150309 (Mon)
+
+Templates
+
+Templates allow us to create generic code, i.e. one code base for many data types
+
+template<class C> class String
+{
+	struct Srep;
+	Srep *rep;
+	public:
+		String();
+		String( const C* );
+		String( const String& );
+
+		C read( int i ) const;
+		// etc...
+}
+
+* All code is in a header file!
+* the prefix template<class C> specifies that a template is being declared, and that an argument C of type *type* will be used in the declaration.
+* After C is introduced, it is used exactly like any other type name.
+* The scope of C extends to the end of the declaration prefixed by template<class C>
+* Note: replace *class* with desired *type*
+
+The name of a class template followed by a type, bracketed by <>, is the name of a class (as defined by the template) and can be used exacly like other class names.
+
+String<char> cs;
+String<wchar_t> ws;
+
+class Jchar {
+	// Japanese character;
+}
+
+String<Jchar> js;
+
+--> Standard Template Library (STL) -- library of standard class and function templates.
+
+* Contains 6 kinds of components: 
+	> containers
+	> container adapters
+	> iterators
+	> algorithms
+	> functors (function objects)
+	> function adapters
+http://en.wikipedia.org/wiki/Standard_Template_Library
+* Most of the material we have covered is in the STL.
+	e.g. Linked Lists
+
+/*
+ * LinkListT.h
+ * 
+ */
+
+#include<bool.h>
+#include<iostream.h>
+
+template<class LLT> class LinkedList {
+	private:
+		// usual Linked List code
+	public:
+		// etc...
+}
+
+template<class LLT> void LinkedList<LLT>::AddNode(LLT x) {}
+template<class LLT> void LinkedList<LLT>::DeleteNode(LLT x) {}
+// etc...
+
+______________
+
+20150323 (Mon)
+
+Main deciders: LIFO? Linked List; FIFO? Queue; Hierarchical relationship? Tree; * to * relationship? Hash table;
+
+Trees
+
+(binary tree: max 2 branches)
+
+root - node at the top
+leaf - a node w/o children
+parent - node linked above a given node
+child(ren) - node linked below a given node
+sibling - two nodes are siblings if same parent
+ancestor - a node's parent is its 1st ancestor
+subtree - any node in a tree that can be viewed as the root of a new, smaller tree
+left & right subtrees - the nodes beginning with a left or right child
+height - the max depth of any leaf
+
+height - start at 0 or 1
+
+Binary Tree
+A binary tree is a finite set of nodes
+empty node = no nodes
+
+root --> max 2 children {left, right}
+- traversal, up to parent --> root, eventually
+
+Full Binary Tree - a binary tree of height h w/o missing nodes. All leaves have the same depth & every non-leaf has 2 children.
+
+Complete Binary Tree - a binary tree of height h that is full to level h-1 & has level h filled in from left --> right
+
+Balanced Binary Tree - a binary tree in which the left & right subrees of any node have heights that differ by at most 1.
+
+     5
+    / \
+  17   11
+ /  \  / \
+9  20 8  14
+^ Full Binary Tree
+
+        5
+       / \
+     17   11
+    / \   / \
+   9   20 8 14
+  / \  / \
+13 16 15 NULL
+^ Complete, but not Full
+
+        5
+       / \
+     17   11
+    / \   / \
+   9  20 8  14
+  / \    | \ 
+13 NULL 16 15
+^ Not Complete, Not Full
+
+A Binary Tree is either: 
+1) an empty tree
+2) a root w/ remaining nodes divided into 2 disjoint sets named left subtree & right subtree
+
+(^ recursively defined algorithms to manipulate trees)
+
+Tree Operations
+* print tree (traversal)
+* create node
+* delete node
+* test if node is leaf
+* search tree
+* copy tree
+
+struct BinaryTreeNode {
+	int data;
+	BinaryTreeNode *left;
+	BinaryTreeNode *right;
+};
+typedef struct BinaryTreeNode *BinaryTreeNodePtr;
+
+BinaryTreeNode *CreateNode( int newVal ) {
+	BinaryTreeNode *newNode = new BinaryTreeNode;
+
+	newNode->data = newVal;
+	newNode->left = newNode->right = NULL;
+	
+	return newNode;
+}
+
+Methods of Traversal:
+
+example tree:
+
+        5
+       / \
+     17   11
+    / \ 
+   9  41
+  / \
+NULL 13
+
+Pre-Order (Root-Left-Right)
+1) Process the root
+2) Process the nodes in the left subtree (recursion)
+3) Process the nodes in the right subtree (recursion)
+
+void PrintPreOrder( BinaryTreeNodePtr t ) {
+	if( t != NULL ) {
+		cout << t->data << endl;
+		PrintPreOrder( t->left );
+		PrintPreOrder( t->right );
+	}
+}
+
+5 (root)
+17
+9
+13
+41
+11
+(root 1st)
+- - -
+
+In-Order (Left-Root-Right)
+1) Process the nodes in the left subtree (recursion)
+2) Process the root
+3) Process the nodes in the right subtree (recursion)
+
+void PrintInOrder( BinaryTreeNodePtr t ) {
+	if( t != NULL ) {
+		PrintInOrder( t->left );
+		cout << t->data << endl;
+		PrintInOrder( t->right );
+	}
+}
+
+9
+13
+17
+41
+5 (root)
+11
+(root middle [depends on length of branches])
+- - -
+
+Post-Order (Left-Right-Root)
+1) Process the nodes in the left subtree (recursion)
+2) Process the nodes in the right subtree (recursion)
+3) Process the root
+
+void PrintPostOrder( BinaryTreeNodePtr t ) {
+	if( t != NULL ) {
+		PrintPostOrder( t->left );
+		PrintPostOrder( t->right );
+		cout << t->data << endl;
+	}
+}
+
+13
+9
+41
+17
+11
+5 (root)
+(root last)
+- - -
+
+______________
+
+20150327 (Fri)
+
+Binary Search Trees
+
+* special search trees that are organized
+- every entry in n's left subtree (<=|<) node n.entry
+- every entry in n's right subtree >= node n.entry
+* contents are sorted when processed using an InOrder traversal.
+
+Search O(log N)
+log base[2], for CS
+- time to search N items
+
+* everything operates from the root
+* using wrapper functions to hide private data or not require knowing it
+	e.g. AddNodeR(public) -> AddNodeR(private)
+
+AddNode: 
+1) allocate new node
+2) initialize members
+3) if root == NULL, root = new node
+   else 
+	2 pointers, 1st = root
+	while 1st != NULL
+		 2nd = 1st
+		if new data == 1st data
+			// ignored
+		if new data < 1st data
+			1st = 1st -> left
+		else
+			1st = 1st -> right
+	if new data < 2nd -> data
+		2nd -> left = new
+	else
+		2nd -> right = new
+* == --> <= to handle cases where new data == tested node
+
+* wrapper function
+void BinarySearchTree::AddNodeR( DATA_TYPE newData ) {
+	AddNodeR( rootptr, newData );
+}
+
+AddNodeR(rootptr, newData)
+if root == NULL
+	1) allocate new node
+	2) root = new node
+else if newData <= root -> data
+	AddNodeR( root -> left, newData )
+else
+	AddNodeR( root -> right, newData )
+
+AddNode vs AddNodeR
+	- AddNodeR() is overloaded
+	- Traversal: iterative vs recursive
+	- Access: public vs private
+	- Non-recursive can't blow stack if tree is grossly unbalanced.
+
+______________
+
+20150403 (Fri)
+
+Binary Search Tree: Deleting Nodes
+
+Must consider 3 cases:
+1) N is a leaf.
+2) N has 1 child.
+3) N has 2 children.
+
+        45
+       / \
+     9    53
+    / \   / \
+   3  17 53  54
+      / \   
+   NULL  20
+
+1) Set pointer from parent to NULL; and delete dynamically allocated memory.
+3: set 9->left = NULL; delete 3;
+
+2) N child: left or right? Either way, set child to N's parent
+17: retain pointer to X, where X->left|right = 17; set 9->right = 20; delete 17;
+
+3) Locate another M that is easier to remove from the tree than N; Copy the info in M --> N, replacing original N data; delete M from the tree;
+45: 
+
+DeleteItem( TreePtr, key )
+	if ( key is in node N )
+		DeleteNodeItem(N)
+	else
+		do nothing / error message
+
+DeleteNodeItem( TreePtr, N )
+	if( N is a leaf )
+		remove N from the tree
+	else if( N has only one child (C) )
+		if( N is the left child of its parent P )
+			make C the left child of P
+		else
+			make C the right child of P
+	else // N w/ 2 children
+		find M, the node this N's inorder successor
+		copy info from M into N
+		remove M from the tree
+
+void DeleteNode( TreePtr& t, DATA_TYPE val ) {
+	if ( t == NULL ) {
+		return;
+	} else if ( val == t->data ) { // Commence actual deletion
+		DeleteNodeItem( t );
+	} else if ( val < t->data ) { // Traversal hereafter to find node to actually delete
+		DeleteNode( t->left, val );
+	} else {
+		DeleteNode( t->right, val );
+	}
+}
+
+void DeleteNodeItem( TreePtr& t ) {
+	TreePtr delPtr;
+	
+	if( IsLeaf(t) ) {
+		delete t;
+		t = NULL;
+	} else if ( t->left == NULL ) {
+		delPtr = t;
+		t = t->right;
+		delPtr->right = NULL;
+		delete delPtr;
+	} else if ( t->right == NULL ) {
+		delPtr = t;
+		t = t->left;
+		delPtr->left = NULL;
+		delete delPtr;
+	} else {
+		DATA_TYPE replacementItem;
+		ProcessLeftMost( t->right, replacementItem );
+		t->data = replacementItem;
+	}
+}
+
+* Either promotes inorder successor or inorder predecessor
+This one promotes inorder successor: right subtree, leftmost (least) value therein
+void ProcessLeftMost( TreePtr& t, DATA_TYPE& theItem ) {
+	if( t->left != NULL )
+		ProcessLeftMost( t->left, theItem );
+	else {
+		theItem = t->data;
+		
+		TreePtr delPtr = t;
+		t = t->right;
+		delPtr->right = NULL;
+		delete delPtr;
+	}
+}
+
+______________
+
+20150401 (Wed)
+
+Analyzing Algorithms
+
+- # of [function calls?], loops (add, multiply)
+- Input sizes
+
+Goals:
+A) characterize algorithm efficiency in terms of size of input (time or space utilization)
+B) implementation independent (when possible)
+C) ignore implementation dependent constants
+D) ignore finite number of special cases
+
+* A: e.g. using multithreading/multiple processors
+* D: ignore 1s and minor, degenerative instances
+
+Big O ( O(n) )
+Function f(n) is in O(g(n)) ("f is Big-O of g") when there are constants c and nsub0 such that for all n >= nsub0
+f(n) <= c * g(nsub0)
+
+Useful rules:
+1) multiplicative constants don't matter (ignore)
+2) only dominant terms (in sums) matter (ignore remainder)
+Formally: O(f(n) + g(n)) = O(max(f(n),g(n)))
+So, if T(n) is in O(f(n) + g(n)) then T(n) is in O(max(f(n),g(n))), 
+where max(f,g) is f if there is some nsub0 such that for all n >= nsub0, f(n) > g(n) and g otherwise.
+3) additive constants don't matter (ignore)
+
+An algorithm takes 4N+5. What is O(N)? N. (Discard 4,5 (rules 1,3))
+
+An algorithm takes 7N + 2logN + 2N^2. What is O(N)? N^2. (N^2 > N > logN)
+
+Common Growth Rates:
+O(1) == Constant
+O(logN) == logarithmic
+O(N) == linear
+O(N^2) == quadratic
+O(N^3) == cubic
+O(2^N) == exponential
+
+To summarize:
+Most algorithms perform differently for different inputs. This leads to several types of analysis:
+- worst case
+- best case
+- average case - performance averaged over all inputs of same size
+
+Data Structure / Operation / O()
+
+Singly-linked List
+	{ Add to Front: O(1), Add to End: O(N), Add Sorted: O(N), Delete X: [same per position (front, end, sorted)] }
+Stack(singly-linked list)
+	{ Push: O(1), Pop: O(1), Peek: O(1) } // All operations occur at top of stack
+Queue(singly-linked list)
+	{ Enqueue: O(N), Dequeue: O(1), Peek: O(1) }
+Binary Tree
+	{ O(logN) }
+
+If another underlying structure (array, doubly-linked list, etc.)? No real change.
+
+______________
+
+20150406 (Mon)
+
+Filtering
+
+Functional C
+function pointers: *func
+x_xs --> single vs multiple
+
+______________
+
+20150408 (Wed)
+
+Other types of trees:
+Heaps
+AVL Trees
+2-3 and 2-3-4 Trees
+Red-Black Trees
+Optimal Search Trees
+B-Trees                (<-- databases)
+B*-Trees and B+ Trees
+Finger Trees
+Splay Trees
+
+Heaps - about priority
+2-3 Trees - each internal node has 2 or 3 children, and all leaves are at the same level.
+If 2:
+search keys [left subtree] < search key [root] < search keys [right subtree]
+(like binary search tree)
+If 3:
+search keys [left subtree] < search key [root] < search key [middle subtree] < search keys [right subtree]
+
+2-3-4 Trees add yet another node.
+
+Red-Black Trees can represent 2-3-4 trees; is special binary search tree; are in STL (Standard Template Library)
+
+Optimal Search Tree - for previous trees, access frequency is equal for all nodes. But if access probabilities are known, the tree can stay the same - no insertions or deletions - organized for optimal access.
+e.g. compilers organizing keywords
+
+AVL Trees - a balanced binary tree, maintains height close to minimum (rotating roots to balance)
+
+B-Trees - n == order of the tree; tree subdivided into subtrees of specific node counts: pages of size n; ~ row in table/n <--> page
+1) every page = max(2n)
+2) every page, except root = min(n)
+3) every page is leaf or has m+1 descendants | m == # keys on its page
+4) all leaf pages at same level
+
+B-Tree (order 2)
+25
+10,20 / 30,40
+2,5,7,8 / 13,14,15,18 / 22,24 | 26,27,28 / 32,35,38 / 41,42,45,46
+
+______________
+
+20150410 (Fri)
+
+Heaps
+
+heap - a certain kind of complete binary tree; not a binary search tree
+
+each node in heap contains a key;
+keys organized in a particular manner.
+
+largest|smallest node is always at the top, therefore easily implements a priority queue to quickly access the highest|lowest priority item.
+
+insertion, deletion are O(logN) [is binary tree]
+
+Storage Rules(max heap) [~ min heap]
+1) the entry contained by a node >= entries of node's children
+2) the tree is a complete tree, so every level except the deepest must contain as many nodes as possible and nodes @h are as far left as possible.
+
+Implementation: more easily implemented w/ arrays than pointers (since is complete binary tree).
+If max size of a heap is known in advance,then an array implementation can use a fixed size.
+If are n nodes, only 1st n positions used.
+
+Useful parent-child node relationships:
+index of node = i
+parent = (i - 1)/2
+left child = 2i + 1
+right child = 2i + 2
+
+(integer arithmetic allows 2 children to point back to 1 parent  (1-1)/2 == 0; (2-1)/2 == 1/2-->0)
+
+Since is ordered, adding/removing requires re-sorting (technical term: reheapification).
+Only requires swapping elements in array.
+
+Adding an entry:
+1) place the new entry in the heap in the first available location (end of array ? ).
+2) while( new entry's priority > than parent's)
+	swap the new entry w/ its parent
+O(logN) [base 2]
+
+Deleting an entry:
+1) Move last node of tree into root
+2) Move out-of-place node downward, swapping w/ larger child until new node reaches an acceptable location
+
+______________
+
+20150417 (Fri)
+
+Sorting
+* Why?
+* Common sorting algorithms
+
+Why? For searching -- organizing to search efficiently.
+
+Techniques:
+- Linear Search ("brute force")
+- Binary Search
+- Hash Tables / Dictionaries
+
+linear search - beginning to end, straight through
+
+int LinearSearch( const int A[], const int nMax, const int val ) {
+	for ( int i=0; i < nMax; i++ ) {
+		if ( A[i] == val )
+			return i;
+	}
+	return -1;
+}
+
+int BinarySearch( const int A[], int nA, int val ) {
+	int mid, low = 0, high = nA -1;
+
+	while ( low <= high ) {
+		mid = (low+high)/2;
+		if ( val > A[mid])
+			low = mid + 1;
+		else if ( val < A[mid] )
+			high = mid - 1;
+		else
+			return mid;
+	}
+	return -1;
+}
+
+int BinarySearchRecursive( const int A[], int lo, int hi, int val ) {
+	if ( hi >= lo ) {
+		int m = (lo + hi)/2;
+		
+		if( A[m] == val )
+			return m;
+		else if ( A[m] > val )
+			return BinarySearchRecursive( A, lo, m-1, val );
+		else
+			return BinarySearchRecursive( A, m+1, hi, val );
+	}
+	return -1;
+}
+
+______________
+
+20150420 (Mon)
+
