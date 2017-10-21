@@ -96,7 +96,9 @@ int traversal_1( tree *dryad, int depth )
 		{
 			if ( dryad->t != NULL )
 			{
-				if ( dryad->production == identifier || dryad->production == class_name || dryad->production == original_namespace_name )
+				if ( dryad->production == identifier 
+					|| dryad->production == class_name 
+					|| dryad->production == original_namespace_name )
 				{
 					name_temp = dryad->t->text;
 					
@@ -136,10 +138,6 @@ int traversal_1( tree *dryad, int depth )
 			/* SUBSECTION: Operations to perform when entering a subtree
 		    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-
-			if ( PRINT_SEMANTIC_IDENTIFIERS )
-				printf( "%*s%-s\n", depth, " ", dryad->prod_label );
-
 			if ( dryad->production == using_directive+4 )
 			{
 				name_temp = dryad->children[2]->children[0]->t->text;
@@ -155,7 +153,8 @@ int traversal_1( tree *dryad, int depth )
 
 
 
-			if ( dryad->production == class_specifier || ( dryad->production >= function_definition+1 && dryad->production <= function_definition+2 ) )
+			if ( dryad->production == class_specifier 
+			|| ( dryad->production >= function_definition+1 && dryad->production <= function_definition+2 ) )
 			{
 				// Save the original scope, if needed.
 				if ( dryad->production != class_specifier )
@@ -169,7 +168,8 @@ int traversal_1( tree *dryad, int depth )
 			
 			
 			// Check scope for member dereferencing operators
-			if ( dryad->production == postfix_expression+15 || dryad->production == postfix_expression+19 )
+			if ( dryad->production == postfix_expression+15 
+				|| dryad->production == postfix_expression+19 )
 			{
 				// Fetch scopes and check members in scope for each nested member reference operator
 				resolve_members_in_scope( dryad );
@@ -255,20 +255,7 @@ int traversal_1( tree *dryad, int depth )
 				current_scope->name = name_temp;
 				current_scope->assocd_type = type_temp;
 				
-				// Manually instigate traversal for parameter_declaration_clause_opt
-				parameter_count = 0;
-				parameters = NULL;
-				
-				pt_temp = pt_get_child( dryad->children[0], parameter_declaration_clause_opt+1, 0 );
-				traversal_1( pt_temp, 0 );
-				pt_temp = NULL;
-				// And handle the results of parameter traversal
-				// i.e. Finish defining function type
-				// Assign each of its discovered parameters
-				type_temp->u.func.ct_params = parameter_count;
-				type_temp->u.func.params = parameters;
-				parameter_count = 0;
-				parameters = NULL;
+				gather_parameters( dryad, type_temp );
 				
 				// And don't let anything happen automatically for the function's own definition
 				skip_traversals = 1;
@@ -318,20 +305,7 @@ int traversal_1( tree *dryad, int depth )
 				current_scope->name = name_temp;
 				current_scope->assocd_type = type_temp;
 
-				// Manually instigate traversal for parameter_declaration_clause_opt
-				parameter_count = 0;
-				parameters = NULL;
-				
-				pt_temp = pt_get_child( dryad->children[1], parameter_declaration_clause_opt+1, 0 );
-				traversal_1( pt_temp, 0 );
-				pt_temp = NULL;
-				// And handle the results of parameter traversal
-				// i.e. Finish defining function type
-				// Assign each of its discovered parameters
-				type_temp->u.func.ct_params = parameter_count;
-				type_temp->u.func.params = parameters;
-				parameter_count = 0;
-				parameters = NULL;
+				gather_parameters( dryad, type_temp );
 				
 				// And don't let anything happen automatically for the function's own definition.
 				skip_traversals = 2;
@@ -339,7 +313,8 @@ int traversal_1( tree *dryad, int depth )
 			
 			
 			
-			if ( dryad->production == parameter_declaration+1 || dryad->production == parameter_declaration+2 )
+			if ( dryad->production == parameter_declaration+1 
+				|| dryad->production == parameter_declaration+2 )
 			{
 				name_temp = get_unqualified_id( dryad->children[1] );
 				if ( name_temp != NULL )
@@ -372,7 +347,8 @@ int traversal_1( tree *dryad, int depth )
 				}
 			}
 			
-			if ( dryad->production == parameter_declaration+3 || dryad->production == parameter_declaration+4 )
+			if ( dryad->production == parameter_declaration+3 
+				|| dryad->production == parameter_declaration+4 )
 			{
 				// Gather parameter type, but there is no symbol to update.
 				// We're only filling out an abstract type for a function declaration.
@@ -388,7 +364,8 @@ int traversal_1( tree *dryad, int depth )
 			
 			
 			
-			if ( dryad->production == simple_declaration+1 || dryad->production == member_declaration+1 )
+			if ( dryad->production == simple_declaration+1 
+				|| dryad->production == member_declaration+1 )
 			{
 				// Grab function name for general usage
 				name_temp = get_id_from_direct_declarator( dryad->children[1] );
@@ -439,19 +416,7 @@ int traversal_1( tree *dryad, int depth )
 						symbol_temp->type->u.func.return_type = type_temp;
 						type_temp = symbol_temp->type;
 		
-						// Manually instigate traversal for parameter_declaration_clause_opt
-						parameter_count = 0;
-						parameters = NULL;
-						
-						pt_temp = pt_get_child( dryad->children[1], parameter_declaration_clause_opt+1, 0 );
-						traversal_1( pt_temp, 0 );
-						pt_temp = NULL;
-						// Finish declaring function type
-						// Assign each of its discovered parameters
-						type_temp->u.func.ct_params = parameter_count;
-						type_temp->u.func.params = parameters;
-						parameter_count = 0;
-						parameters = NULL;
+						gather_parameters( dryad, type_temp );
 					}				
 				}
 				// Create basic variable declaration
@@ -584,19 +549,7 @@ int traversal_1( tree *dryad, int depth )
 					// This function definition has no return type
 					//   though it might actually need to return type class ...
 
-					// Manually instigate traversal for parameter_declaration_clause_opt
-					parameter_count = 0;
-					parameters = NULL;
-					
-					pt_temp = pt_get_child( dryad->children[0], parameter_declaration_clause_opt+1, 0 );
-					traversal_1( pt_temp, 0 );
-					pt_temp = NULL;
-					// Finish declaring function type
-					// Assign each of its discovered parameters
-					type_temp->u.func.ct_params = parameter_count;
-					type_temp->u.func.params = parameters;
-					parameter_count = 0;
-					parameters = NULL;
+					gather_parameters( dryad, type_temp );
 				}				
 
 				// And just skip over this production's children, because we've manually handled it all.
@@ -640,7 +593,8 @@ int traversal_1( tree *dryad, int depth )
 
 
 			// Change scope back
-			if ( dryad->production == class_specifier || ( dryad->production >= function_definition+1 && dryad->production <= function_definition+2 ) )
+			if ( dryad->production == class_specifier 
+			|| ( dryad->production >= function_definition+1 && dryad->production <= function_definition+2 ) )
 			{
 				// If original_scope != NULL, then we jumped scopes, e.g. defined a class member outside a class
 				if ( original_scope != NULL )
@@ -913,7 +867,8 @@ ctype* assemble_type( tree *t )
 			assembled_type = tmp_new;
 			tmp_new = NULL;
 		}
-		if ( t->production == direct_declarator+9 || t->production == direct_abstract_declarator+5 )
+		if ( t->production == direct_declarator+9 
+			|| t->production == direct_abstract_declarator+5 )
 		{
 			if ( assembled_type == NULL )
 			{
@@ -956,7 +911,8 @@ ctype* assemble_type( tree *t )
 			tmp_new = NULL;
 		}
 		// Create a new type of some custom-defined sort, and append it to the chain.
-		if ( t->production == type_name+2 || t->production == type_name+3 )
+		if ( t->production == type_name+2 
+			|| t->production == type_name+3 )
 		{
 			tmp_new = tt_insert( typetable, t_MISC );
 			if ( tmp_new == NULL )
@@ -1082,6 +1038,35 @@ void prepare_parameter_list()
 		handle_semantic_error( "Failed to allocate memory for function parameters.", 2, -1 );
 		exit( program_result_120 );
 	}
+}
+
+
+// Perform the gather of parameters from parameter_declaration_clause_opt
+void gather_parameters( tree *t, ctype *type_temp )
+{
+	tree *pt_temp;
+
+	// Manually instigate traversal for parameter_declaration_clause_opt
+	parameter_count = 0;
+	parameters = NULL;
+	
+	if ( t->production == function_definition+1 
+		|| t->production == member_declaration+3 )
+		pt_temp = pt_get_child( t->children[0], parameter_declaration_clause_opt+1, 0 );
+	if ( t->production == function_definition+2 
+		|| t->production == simple_declaration+1 
+		|| t->production == member_declaration+1 )
+		pt_temp = pt_get_child( t->children[1], parameter_declaration_clause_opt+1, 0 );
+	
+	traversal_1( pt_temp, 0 );
+
+	// And handle the results of parameter traversal
+	// i.e. Finish defining function type
+	// Assign each of its discovered parameters
+	type_temp->u.func.ct_params = parameter_count;
+	type_temp->u.func.params = parameters;
+	parameter_count = 0;
+	parameters = NULL;
 }
 
 

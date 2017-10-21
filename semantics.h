@@ -32,6 +32,7 @@ ctype* assemble_type(tree *t);
 char* get_unqualified_id(tree *t);
 char* get_id_from_direct_declarator(tree *t);
 void prepare_parameter_list();
+void gather_parameters(tree *t,ctype *type_temp);
 void handle_semantic_warning(char *msg,char *id,int type,int line_num);
 int handle_semantic_error(char *msg,int type,int line_num);
 
