@@ -459,10 +459,9 @@ int traversal_1( tree *dryad, int depth )
 				{
 					// Find out if the whole big mess of init_declarator_list_2 or member_declarator_list_2 are present
 					// !!! Won't properly recognize arrays or pointers.
-					if ( dryad->production == simple_declaration+1 )
-						pt_temp = pt_get_child( dryad->children[1], init_declarator_list+2, 0 );
-					else if ( dryad->production == member_declaration+1 )
-						pt_temp = pt_get_child( dryad->children[1], member_declarator_list+2, 0 );
+					pt_temp = dryad->children[1];
+					if ( pt_temp->production != init_declarator_list+2 && pt_temp->production != member_declarator_list+2 )
+						pt_temp = NULL;
 					
 					// If no init lists, properly assemble the type without more gymnastics than normal
 					if ( pt_temp == NULL )
@@ -503,12 +502,11 @@ int traversal_1( tree *dryad, int depth )
 								traversal_1( pt_temp->children[2]->children[1], depth+5 );
 						}
 						
-						if ( dryad->production == simple_declaration+1 )
-							pt_temp = pt_get_child( pt_temp->children[0], init_declarator_list+2, 0 );
-						else if ( dryad->production == member_declaration+1 )
-							pt_temp = pt_get_child( pt_temp->children[0], member_declarator_list+2, 0 );
+						pt_temp = pt_temp->children[0];
+						if ( pt_temp->production != init_declarator_list+2 && pt_temp->production != member_declarator_list+2 )
+							pt_temp = NULL;
 						
-						// Prepare name_temp again for the last variable after exit
+						// Prepare name_temp again for one last variable after exit
 						if ( pt_temp == NULL )
 							name_temp = get_unqualified_id( dryad->children[1] );
 					}
@@ -552,7 +550,7 @@ int traversal_1( tree *dryad, int depth )
 					}
 				}
 				
-				// And just skip over this production's children, because we've manually handled it all.
+				// And just skip over this production's children, because we've messily handled it all.
 				skip_traversals = dryad->ct_children;
 			}
 			
