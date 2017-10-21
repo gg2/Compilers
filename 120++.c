@@ -43,6 +43,7 @@ int main( int argc, char **argv )
 		for ( i=0; i<argc-1; ++i )
 		{
 			pt_init( &(fileparsetrees[i]) );
+			filescopetrees[i] = NULL;
 			filesymboltables[i] = ( symbol** ) malloc( sizeof( symbol* ) * st_size );
 			if ( filesymboltables[i] == NULL )
 			{
@@ -82,6 +83,11 @@ int main( int argc, char **argv )
 				yysymboltable = filesymboltables[ ct-1 ];
 				yyin = f;
 				handling_includes = 0;
+				included_iostream = 0;
+				included_fstream = 0;
+				included_string = 0;
+				included_cstdlib = 0;
+				included_ctime = 0;
 				defining_new_type = 0;
 				stack_push( &yyfiles, argv[ct], f, 1 );
 				program_result_120 = EXIT_NORMAL;

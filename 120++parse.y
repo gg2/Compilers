@@ -450,8 +450,8 @@ additive_expression:
 
 shift_expression:
 	additive_expression { $$ = pt_generate_node( shift_expression+1, "shift_expression_1", 1, $1 ); }
-	| shift_expression SL additive_expression { /* !Not 120++! */ /* Might be overloaded for cout, but still warned */ handle_parse_warning( "Shift operators are not supported in 120++ specs. (If using them for cout, you're fine.)", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( shift_expression+2, "shift_expression_2", 3, $1, $2, $3 ); }
-	| shift_expression SR additive_expression { /* !Not 120++! */ /* Might be overloaded for cin, but still warned */ handle_parse_warning( "Shift operators are not supported in 120++ specs. (If using them for cin, you're fine.)", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( shift_expression+3, "shift_expression_3", 3, $1, $2, $3 ); }
+	| shift_expression SL additive_expression { /* !Not 120++! */ /* Might be overloaded for cout, but still warned */ handle_parse_warning( "Shift operators are not supported in 120++ specs. (If using them as the stream operator for cout, ignore this warning.)", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( shift_expression+2, "shift_expression_2", 3, $1, $2, $3 ); }
+	| shift_expression SR additive_expression { /* !Not 120++! */ /* Might be overloaded for cin, but still warned */ handle_parse_warning( "Shift operators are not supported in 120++ specs. (If using them as the stream operator for cin, ignore this warning.)", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( shift_expression+3, "shift_expression_3", 3, $1, $2, $3 ); }
 	;
 
 relational_expression:
@@ -945,13 +945,13 @@ member_declarator_list:
 
 member_declarator:
 	declarator { $$ = pt_generate_node( member_declarator+1, "member_declarator_1", 1, $1 ); }
-	| declarator pure_specifier { /* !Not 120++! */ handle_parse_warning( "Whatever the fuck a \"pure specifier\" is, it is not supported in 120++ specs.", W_PARSE_UNHANDLED ); $$ = pt_generate_node( member_declarator+2, "member_declarator_2", 2, $1, $2 ); }
+	| declarator pure_specifier { /* !Not 120++! */ handle_parse_warning( "Whatever a \"pure specifier\" is, it is not supported in 120++ specs.", W_PARSE_UNHANDLED ); $$ = pt_generate_node( member_declarator+2, "member_declarator_2", 2, $1, $2 ); }
 	| declarator constant_initializer { $$ = pt_generate_node( member_declarator+3, "member_declarator_3", 2, $1, $2 ); }
 	| identifier ':' constant_expression { /* !Not 120++! */ handle_parse_warning( "This member declarator syntax is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( member_declarator+4, "member_declarator_4", 3, $1, $2, $3 ); }
 	;
 
 /*
- * This rule need a hack for working around the ``= 0'' pure specifier.
+ * This rule needs a hack for working around the ``= 0'' pure specifier.
  * 0 is returned as an ``INTEGER'' by the lexical analyzer, 
  * but in this context is different.
  */

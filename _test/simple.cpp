@@ -4,14 +4,9 @@
 
 using namespace std;
 
-
-class string
-{
-	public:
-		string();
-		
-		char *c_str();
-}
+#include<iostream>
+#include<cstdlib>
+#include<string>
 
 class test 
 {
@@ -21,8 +16,10 @@ class test
 	public:
 		test();
 		test(int*** val);
-		int get_count() { return count; };
-		int set_count(int**);
+		int get_count() { return cunt; };
+		int set_count(int** scum);
+		
+		char *allocate_word(char* input,int len);
 		
 		string hobnob;
 };
@@ -37,7 +34,7 @@ test::test( int val )
 	count = val;
 }
 
-int test::set_count( int ct )
+int test::set_count( int ct = 0 )
 {
 	count = ct;
 	return count;
@@ -54,8 +51,8 @@ int main( int argc, char **argv )
 {
 	test *x = new test( 3 );
 	test y;
-	const char letter = 'a';
-	double sine, cosine, tangent;
+	const char letter = chihuahua;
+	double sine = 8.888, cosine, tangent = 360.0;
 	int A = 100;
 	int W[50];
 	int Z;

@@ -34,7 +34,9 @@ char* check_symbol(symbol **table,char *s_o);
 char* store_symbol(symbol **table,char *s_o);
 symbol* store_type(symbol **table,char *s_o,int token_id);
 int fetch_type(symbol **table,char *s_o);
-int handle_include();
+void handle_include();
+void handle_custom_include();
+void handle_system_include(const char *file_name);
 void handle_scan_warning(char *msg,int type);
 int handle_scan_error(char *msg,int type);
 
@@ -50,37 +52,61 @@ int handle_scan_error(char *msg,int type);
 (#|%:)"include"[ \t]*\"[^"\n]+\"		{
 																			if ( yytext[0] == '%' && yyfiles->w_digraphs )
 																				handle_scan_warning( w_msg_alttokens, 4 );
-																			handle_include();
+																			handle_custom_include();
 																		}
 (#|%:)"include"[ \t]*"<iostream>"		{
 																			if ( yytext[0] == '%' && yyfiles->w_digraphs )
 																				handle_scan_warning( w_msg_alttokens, 4 );
-																			yyfiles->included_iostream = 1;
+																			if ( included_iostream == 0 )
+																			{
+																				included_iostream = 1;
+																				handle_system_include( "incl_iostream.h" );
+																			}
 																		}
 (#|%:)"include"[ \t]*"<fstream>"		{
 																			if ( yytext[0] == '%' && yyfiles->w_digraphs )
 																				handle_scan_warning( w_msg_alttokens, 4 );
-																			yyfiles->included_fstream = 1;
+																			if ( included_fstream == 0 )
+																			{
+																				included_fstream = 1;
+																				handle_system_include( "incl_fstream.h" );
+																			}
 																		}
 (#|%:)"include"[ \t]*"<string>"			{
 																			if ( yytext[0] == '%' && yyfiles->w_digraphs )
 																				handle_scan_warning( w_msg_alttokens, 4 );
-																			yyfiles->included_string = 1;
+																			if ( included_string == 0 )
+																			{
+																				included_string = 1;
+																				handle_system_include( "incl_string.h" );
+																			}
+																		}
+(#|%:)"include"[ \t]*"<string.h>"		{
+																			if ( yytext[0] == '%' && yyfiles->w_digraphs )
+																				handle_scan_warning( w_msg_alttokens, 4 );
+																			if ( included_cstdlib == 0 )
+																			{
+																				included_cstdlib = 1;
+																				handle_system_include( "incl_c.h" );
+																			}
 																		}
 (#|%:)"include"[ \t]*"<cstdlib>"		{
 																			if ( yytext[0] == '%' && yyfiles->w_digraphs )
 																				handle_scan_warning( w_msg_alttokens, 4 );
-																			yyfiles->included_cstdlib = 1;
+																			if ( included_cstdlib == 0 )
+																			{
+																				included_cstdlib = 1;
+																				handle_system_include( "incl_c.h" );
+																			}
 																		}
 (#|%:)"include"[ \t]*"<ctime>"			{
 																			if ( yytext[0] == '%' && yyfiles->w_digraphs )
 																				handle_scan_warning( w_msg_alttokens, 4 );
-																			yyfiles->included_ctime = 1;
-																		}
-(#|%:)"include"[ \t]*"<cmath>"			{
-																			if ( yytext[0] == '%' && yyfiles->w_digraphs )
-																				handle_scan_warning( w_msg_alttokens, 4 );
-																			yyfiles->included_cmath = 1;
+																			if ( included_cstdlib == 0 )
+																			{
+																				included_cstdlib = 1;
+																				handle_system_include( "incl_c.h" );
+																			}
 																		}
 (#|%:)"include"[ \t]*"<"[^>\n]+">"	{ 
 																			if ( yytext[0] == '%' && yyfiles->w_digraphs )
@@ -830,7 +856,27 @@ int yywrap()
 
 // Basic method for switching buffers from:
 // http://westes.github.io/flex/manual/Multiple-Input-Buffers.html#Multiple-Input-Buffers
-int handle_include()
+void handle_include()
+{
+	yyin = fopen( yyincludefilename, "r" );
+	// Push the include file onto the file stack
+	stack_push( &yyfiles, yyincludefilename, yyin, 1 );
+	
+	// Switch the buffer state and begin scanning the include file
+	if ( yyin != NULL )
+	{
+		yypush_buffer_state( yy_create_buffer( yyin, YY_BUF_SIZE ) );
+		++handling_includes;
+		BEGIN(INITIAL);
+	}
+	else
+	{
+		handle_scan_error( "Failed to open include file.", 2 );
+	}
+}
+
+
+void handle_custom_include()
 {
 	char *dir = NULL;
 	int yyleng_ifn = 0;
@@ -881,27 +927,23 @@ int handle_include()
 		}
 		else
 		{
-			return handle_scan_error( "Failed to allocate memory for an include filename.", 3 );
+			handle_scan_error( "Failed to allocate memory for an include filename.", 3 );
+			exit( program_result_120 );
 		}
 	}
-	
-	yyin = fopen( yyincludefilename, "r" );
-	// Push the include file onto the file stack
-	stack_push( &yyfiles, yyincludefilename, yyin, 1 );
+	handle_include();
+		
 	// Free up memory
 	free( yyincludefilename );
-	
-	// Switch the buffer state and begin scanning the include file
-	if ( yyin != NULL )
-	{
-		yypush_buffer_state( yy_create_buffer( yyin, YY_BUF_SIZE ) );
-		++handling_includes;
-		BEGIN(INITIAL);
-	}
-	else
-	{
-		handle_scan_error( "Failed to open include file.", 2 );
-	}
+	yyincludefilename = NULL;
+}
+
+
+void handle_system_include( const char *file_name )
+{
+	yyincludefilename = file_name;
+	handle_include();
+	yyincludefilename = NULL;
 }
 
 

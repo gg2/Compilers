@@ -11,8 +11,8 @@
 #include "120++parse.tab.h"
 
 
-static scope *current_scope;
 static scope *global_scope;
+static scope *current_scope;
 static ctype **typetable;
 
 static int parameter_count;
@@ -24,6 +24,10 @@ int analyze_semantics_1(tree *parsetree,ctype **types,scope *scopetree);
 void pre_order_traversal(tree *dryad,int depth);
 int post_order_traversal(tree *dryad,int depth);
 int traversal_1(tree *dryad,int depth);
+scope* switch_scope_on_declarator(tree *t);
+void resolve_members_in_scope( tree* dryad );
+scope* resolve_scope_of_class( symbol* symbol_temp );
+symbol* add_symbol_to_table(char *id,int line_num);
 ctype* assemble_type(tree *t);
 char* get_unqualified_id(tree *t);
 char* get_id_from_direct_declarator(tree *t);

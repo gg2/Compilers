@@ -74,7 +74,7 @@ tree* pt_generate_node( const int productionrule_number, const char *productionr
 // Presumes that root does not match the target production,
 //   otherwise, you'd just grab root, because you already have direct access to it.
 // Options: range == 0, productionrule_number must match exactly.
-//          range > 0, productionrule_number must be within range of 
+//          range > 0, productionrule_number must be within the range  
 //                     productionrule_number <--> productionrule_number + range.
 //          range < 0, you get nothing.
 // RETURNS: pointer to the first node found with a production matching productionrule_number

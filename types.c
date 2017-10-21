@@ -420,6 +420,8 @@ const char* tt_print_base_name( short t_type )
 		return( "INT" );
 	else if ( t_type == t_DOUBLE || t_type == t_FLOAT )
 		return( "DOUBLE" );
+	else if ( t_type == t_NAMESPC )
+		return( "NAMESPACE" );
 	else if ( t_type == t_ARRAY )
 		return( "ARRAY" );
 	else if ( t_type == t_STRUCT )

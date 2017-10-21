@@ -13,12 +13,6 @@ typedef struct stack
 	FILE *file_ptr;
 
 	int line_num;
-	int included_iostream;
-	int included_fstream;
-	int included_string;
-	int included_cstdlib;
-	int included_ctime;
-	int included_cmath;
 	int w_include;
 	int w_preprocdirective;
 	int w_numberformats;

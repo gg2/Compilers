@@ -38,12 +38,6 @@ int stack_push( stack **head, char *val, FILE *fptr, int ln )
 			n->file_ptr = fptr;
 
 			n->line_num = ln;
-			n->included_iostream = 0;
-			n->included_fstream = 0;
-			n->included_string = 0;
-			n->included_cstdlib = 0;
-			n->included_ctime = 0;
-			n->included_cmath = 0;
 			n->w_include = 1;
 			n->w_preprocdirective = 1;
 			n->w_numberformats = 1;

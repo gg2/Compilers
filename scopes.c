@@ -153,7 +153,7 @@ void scope_print( scope *node, int depth )
 	if ( node != NULL )
 	{
 		// assocd_type and parent can be NULL, so check for that to avoid Seg Faults
-		printf( "%*s for type: %s, parent scope: %s\n", depth*2, node->name, ( node->assocd_type != NULL ) ? tt_print_base_name( node->assocd_type->base_type ) : "n/a", ( node->parent != NULL ) ? node->parent->name : "n/a" );
+		printf( "%*s :: parent scope: %s ; for type: %s\n", depth*2, node->name, ( node->parent != NULL ) ? node->parent->name : "n/a", ( node->assocd_type != NULL ) ? tt_print_base_name( node->assocd_type->base_type ) : "n/a" );
 		
 		st_print( node->symbols_in_scope, 1 );
 		

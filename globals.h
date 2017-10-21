@@ -29,6 +29,11 @@ static const short EXIT_ERROR_UNKNOWN = 6;
 static short program_result_120;
 
 stack *yyfiles;
+	int included_iostream;
+	int included_fstream;
+	int included_string;
+	int included_cstdlib;
+	int included_ctime;
 
 tree *yyparsetree;
 
