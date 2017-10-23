@@ -1,3 +1,10 @@
+# Some of these should be in the global ignore
+# But they don't seem to be ignored ...
+*.exe
+*.o
+*.so
 *.output
 *.stackdump
+*.zip
+
 _*/
