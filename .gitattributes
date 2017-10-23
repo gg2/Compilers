@@ -1,5 +1,22 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+*.o -text
+*.so -text
+*.exe -text
+*.jpg -text
+*.JPG -text
+*.jpeg -text
+*.JPEG -text
+*.png -text
+*.PNG -text
+*.pdf -text
+*.PDF -text
+*.tif -text
+*.TIF -text
+*.tiff -text
+*.TIFF -text
+*.zip -text
+*.ZIP -text
 
 # Custom for Visual Studio
 *.cs     diff=csharp
