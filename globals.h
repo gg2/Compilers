@@ -10,11 +10,11 @@
 
 
 // Program control constants
-static const short PRINT_PARSE_TREES = 0;
+static const short PRINT_PARSE_TREES = 1;
 static const short PRINT_SYMBOL_TABLES = 0;
 static const short PRINT_TYPE_TABLES = 0;
-static const short PRINT_SCOPES = 1;
-static const short PRINT_SCOPE_SYMBOL_TABLES = 1;
+static const short PRINT_SCOPES = 0;
+static const short PRINT_SCOPE_SYMBOL_TABLES = 0;
 static const short PRINT_SEMANTIC_IDENTIFIERS = 0;
 
 // Program exit constants
