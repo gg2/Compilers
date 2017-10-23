@@ -138,6 +138,11 @@ int traversal_1( tree *dryad, int depth )
 			/* SUBSECTION: Operations to perform when entering a subtree
 		    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+			if ( PRINT_SEMANTIC_IDENTIFIERS )
+				printf( "%*s%-s\n", depth, "", dryad->prod_label );
+
+
+
 			if ( dryad->production == using_directive+4 )
 			{
 				name_temp = dryad->children[2]->children[0]->t->text;
@@ -260,7 +265,6 @@ int traversal_1( tree *dryad, int depth )
 				// And don't let anything happen automatically for the function's own definition
 				skip_traversals = 1;
 			}
-			
 			
 			
 			if ( dryad->production == function_definition+2 )
@@ -501,15 +505,12 @@ int traversal_1( tree *dryad, int depth )
 					//   that mostly match except for everywhere that they don't, 
 					//   and are therefore not easily functionizable 
 					//   but repeat long segments of code nonetheless.
-					if ( dryad->production == simple_declaration+1 )
-						pt_temp = pt_get_child( dryad->children[1], init_declarator, 0 );
-					else if ( dryad->production == member_declaration+1 )
-						pt_temp = pt_get_child( dryad->children[1], member_declarator+1, 3 );
-						
+					pt_temp = dryad->children[1];
+					// Looking for init_declarator or member_declarator
 					if ( pt_temp->ct_children > 1 )
 					{
 						if ( pt_temp->production == member_declarator+4 )
-							traversal_1( pt_temp->children[2], depth+5 );
+							traversal_1( pt_temp->children[2], depth+5 ); // because it has ':' in the middle
 						else
 							traversal_1( pt_temp->children[1], depth+5 );
 					}
@@ -979,13 +980,18 @@ ctype* assemble_type( tree *t )
 // Grabs the first one it encounters.
 char* get_unqualified_id( tree *t )
 {
-	t = pt_get_child( t, unqualified_id+1, 0 );
-	if ( t != NULL && t->children != NULL && t->children[0]->t != NULL )
+	if ( t != NULL )
 	{
-		return t->children[0]->t->text;
+		if ( t->production != unqualified_id+1 )
+			t = pt_get_child( t, unqualified_id+1, 0 );
+		
+		if ( t != NULL && t->children != NULL && t->children[0]->t != NULL )
+		{
+			return t->children[0]->t->text;
+		}
+		else
+			return NULL;
 	}
-	else
-		return NULL;
 }
 
 
@@ -993,20 +999,25 @@ char* get_unqualified_id( tree *t )
 //   so narrow down the subtree you provide as much as possible first.
 char* get_id_from_direct_declarator( tree *t )
 {
-	t = pt_get_child( t, direct_declarator+5, 3 );
-	if ( t != NULL && t->children != NULL )
+	if ( t != NULL )
 	{
-		if ( t->production == direct_declarator+5 )
-			return get_unqualified_id( t );
-
-		if ( t->production == direct_declarator+6 )
-			return t->children[0]->t->text;
-
-		if ( t->production == direct_declarator+7 )
-			return get_unqualified_id( t->children[2] );
-
-		if ( t->production == direct_declarator+8 )
-			return t->children[2]->t->text;
+		if ( t->production < direct_declarator+5 || t->production > direct_declarator+8 )
+			t = pt_get_child( t, direct_declarator+5, 3 );
+	
+		if ( t != NULL && t->children != NULL )
+		{
+			if ( t->production == direct_declarator+5 )
+				return get_unqualified_id( t );
+	
+			if ( t->production == direct_declarator+6 )
+				return t->children[0]->t->text;
+	
+			if ( t->production == direct_declarator+7 )
+				return get_unqualified_id( t->children[2] );
+	
+			if ( t->production == direct_declarator+8 )
+				return t->children[2]->t->text;
+		}
 	}
 }
 

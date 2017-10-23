@@ -286,22 +286,22 @@ conversion_declarator_opt:
 
 EXPORT_opt:
 	/* epsilon */ { $$ = NULL; }
-	| EXPORT { /* !Not 120++! */ $$ = pt_generate_node( EXPORT_opt+1, "EXPORT_opt", 1, $1 ); }
+	| EXPORT { /* !Not 120++! */ $$ = $1; }
 	;
 
 COMMA_opt:
 	/* epsilon */ { $$ = NULL; }
-	| ',' { $$ = pt_generate_node( COMMA_opt+1, "COMMA_opt", 1, $1 ); }
+	| ',' { $$ = $1; }
 	;
 	
 COLONCOLON_opt:
 	/* epsilon */ { $$ = NULL; }
-	| COLONCOLON { /* !Not 120++! */ $$ = pt_generate_node( COLONCOLON_opt+1, "COLONCOLON_opt", 1, $1 ); }
+	| COLONCOLON { /* !Not 120++! */ $$ = $1; }
 	;
 
 SEMICOLON_opt:
 	/* epsilon */ { $$ = NULL; }
-	| ';' { $$ = pt_generate_node( SEMICOLON_opt+1, "SEMICOLON_opt", 1, $1 ); }
+	| ';' { $$ = $1; }
 	;
 
 /*----------------------------------------------------------------------
@@ -309,21 +309,21 @@ SEMICOLON_opt:
  *----------------------------------------------------------------------*/
 
 primary_expression:
-	literal { $$ = pt_generate_node( primary_expression+1, "primary_expression_1", 1, $1 ); }
-	| THIS { $$ = pt_generate_node( primary_expression+2, "primary_expression_2", 1, $1 ); }
-	| '(' expression_list ')' { $$ = pt_generate_node( primary_expression+3, "primary_expression_3", 3, $1, $2, $3 ); }
-	| id_expression { $$ = pt_generate_node( primary_expression+4, "primary_expression_4", 1, $1 ); }
+	literal { $$ = $1; }
+	| THIS { $$ = $1; }
+	| '(' expression_list ')' { $$ = $1; }
+	| id_expression { $$ = $1; }
 	;
 
 id_expression:
 	unqualified_id { $$ = pt_generate_node( id_expression+1, "id_expression_1", 1, $1 ); }
-	| qualified_id { $$ = pt_generate_node( id_expression+2, "id_expression_2", 1, $1 ); }
+	| qualified_id { $$ = $1; }
 	;
 
 unqualified_id:
 	identifier { $$ = pt_generate_node( unqualified_id+1, "unqualified_id_1", 1, $1 ); }
-	| operator_function_id { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( unqualified_id+2, "unqualified_id_2", 1, $1 ); }
-	| conversion_function_id { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( unqualified_id+3, "unqualified_id_3", 1, $1 ); }
+	| operator_function_id { /* !Not 120++! */ /* Warned below */ $$ = $1; }
+	| conversion_function_id { /* !Not 120++! */ /* Warned below */ $$ = $1; }
 	| '~' class_name { /* !Not 120++! */ handle_parse_warning( "Class destructor operator is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( unqualified_id+4, "unqualified_id_4", 2, $1, $2 ); }
 	;
 
@@ -340,7 +340,7 @@ nested_name_specifier:
 	;
 
 postfix_expression:
-	primary_expression { $$ = pt_generate_node( postfix_expression+1, "postfix_expression_1", 1, $1 ); }
+	primary_expression { $$ = $1; }
 	| postfix_expression '[' expression_list ']' { $$ = pt_generate_node( postfix_expression+2, "postfix_expression_2", 4, $1, $2, $3, $4 ); }
 	| postfix_expression '(' expression_list_opt ')' { $$ = pt_generate_node( postfix_expression+3, "postfix_expression_3", 4, $1, $2, $3, $4 ); }
 	| BOOL '(' expression_list_opt ')' { $$ = pt_generate_node( postfix_expression+4, "postfix_expression_4", 4, $1, $2, $3, $4 ); }
@@ -369,7 +369,7 @@ postfix_expression:
 	;
 
 unary_expression:
-	postfix_expression { $$ = pt_generate_node( unary_expression+1, "unary_expression_1", 1, $1 ); }
+	postfix_expression { $$ = $1; }
 	| PLUSPLUS cast_expression { $$ = pt_generate_node( unary_expression+2, "unary_expression_2", 2, $1, $2 ); }
 	| MINUSMINUS cast_expression { $$ = pt_generate_node( unary_expression+3, "unary_expression_3", 2, $1, $2 ); }
 	| '*' cast_expression { $$ = pt_generate_node( unary_expression+4, "unary_expression_4", 2, $1, $2 ); }
@@ -377,8 +377,8 @@ unary_expression:
 	| unary_operator cast_expression { $$ = pt_generate_node( unary_expression+6, "unary_expression_6", 2, $1, $2 ); }
 	| SIZEOF unary_expression { $$ = pt_generate_node( unary_expression+7, "unary_expression_7", 2, $1, $2 ); }
 	| SIZEOF '(' type_id ')' { $$ = pt_generate_node( unary_expression+8, "unary_expression_8", 4, $1, $2, $3, $4 ); }
-	| new_expression { $$ = pt_generate_node( unary_expression+9, "unary_expression_9", 1, $1 ); }
-	| delete_expression { $$ = pt_generate_node( unary_expression+10, "unary_expression_10", 1, $1 ); }
+	| new_expression { $$ = $1; }
+	| delete_expression { $$ = $1; }
 	;
 
 unary_operator:
@@ -405,7 +405,7 @@ new_type_id:
 
 new_declarator:
 	ptr_operator new_declarator_opt { $$ = pt_generate_node( new_declarator+1, "new_declarator_1", 2, $1, $2 ); }
-	| direct_new_declarator { /* ?Not 120++? */ $$ = pt_generate_node( new_declarator+2, "new_declarator_2", 1, $1 ); }
+	| direct_new_declarator { /* ?Not 120++? */ $$ = $1; }
 	;
 
 direct_new_declarator:
@@ -425,37 +425,37 @@ delete_expression:
 	;
 
 cast_expression:
-	unary_expression { $$ = pt_generate_node( cast_expression+1, "cast_expression_1", 1, $1 ); }
+	unary_expression { $$ = $1; }
 	| '(' type_id ')' cast_expression { $$ = pt_generate_node( cast_expression+2, "cast_expression_2", 4, $1, $2, $3, $4 ); }
 	;
 
 pm_expression:
-	cast_expression { $$ = pt_generate_node( pm_expression+1, "pm_expression_1", 1, $1 ); }
+	cast_expression { $$ = $1; }
 	| pm_expression DOTSTAR cast_expression { /* !Not 120++! */ handle_parse_warning( "Pointer-to-member operators are not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( pm_expression+2, "pm_expression_2", 3, $1, $2, $3 ); }
 	| pm_expression ARROWSTAR cast_expression { /* !Not 120++! */ handle_parse_warning( "Pointer-to-member operators are not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( pm_expression+3, "pm_expression_3", 3, $1, $2, $3 ); }
 	;
 
 multiplicative_expression:
-	pm_expression { $$ = pt_generate_node( multiplicative_expression+1, "multiplicative_expression_1", 1, $1 ); }
+	pm_expression { $$ = $1; }
 	| multiplicative_expression '*' pm_expression { $$ = pt_generate_node( multiplicative_expression+2, "multiplicative_expression_2", 3, $1, $2, $3 ); }
 	| multiplicative_expression '/' pm_expression { $$ = pt_generate_node( multiplicative_expression+3, "multiplicative_expression_3", 3, $1, $2, $3 ); }
 	| multiplicative_expression '%' pm_expression { $$ = pt_generate_node( multiplicative_expression+4, "multiplicative_expression_4", 3, $1, $2, $3 ); }
 	;
 
 additive_expression:
-	multiplicative_expression { $$ = pt_generate_node( additive_expression+1, "additive_expression_1", 1, $1 ); }
+	multiplicative_expression { $$ = $1; }
 	| additive_expression '+' multiplicative_expression { $$ = pt_generate_node( additive_expression+2, "additive_expression_2", 3, $1, $2, $3 ); }
 	| additive_expression '-' multiplicative_expression { $$ = pt_generate_node( additive_expression+3, "additive_expression_3", 3, $1, $2, $3 ); }
 	;
 
 shift_expression:
-	additive_expression { $$ = pt_generate_node( shift_expression+1, "shift_expression_1", 1, $1 ); }
+	additive_expression { $$ = $1; }
 	| shift_expression SL additive_expression { /* !Not 120++! */ /* Might be overloaded for cout, but still warned */ handle_parse_warning( "Shift operators are not supported in 120++ specs. (If using them as the stream operator for cout, ignore this warning.)", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( shift_expression+2, "shift_expression_2", 3, $1, $2, $3 ); }
 	| shift_expression SR additive_expression { /* !Not 120++! */ /* Might be overloaded for cin, but still warned */ handle_parse_warning( "Shift operators are not supported in 120++ specs. (If using them as the stream operator for cin, ignore this warning.)", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( shift_expression+3, "shift_expression_3", 3, $1, $2, $3 ); }
 	;
 
 relational_expression:
-	shift_expression { $$ = pt_generate_node( relational_expression+1, "relational_expression_1", 1, $1 ); }
+	shift_expression { $$ = $1; }
 	| relational_expression '<' shift_expression { $$ = pt_generate_node( relational_expression+2, "relational_expression_2", 3, $1, $2, $3 ); }
 	| relational_expression '>' shift_expression { $$ = pt_generate_node( relational_expression+3, "relational_expression_3", 3, $1, $2, $3 ); }
 	| relational_expression LTEQ shift_expression { $$ = pt_generate_node( relational_expression+4, "relational_expression_4", 3, $1, $2, $3 ); }
@@ -463,49 +463,49 @@ relational_expression:
 	;
 
 equality_expression:
-	relational_expression { $$ = pt_generate_node( equality_expression+1, "equality_expression_1", 1, $1 ); }
+	relational_expression { $$ = $1; }
 	| equality_expression EQ relational_expression { $$ = pt_generate_node( equality_expression+2, "equality_expression_2", 3, $1, $2, $3 ); }
 	| equality_expression NOTEQ relational_expression { $$ = pt_generate_node( equality_expression+3, "equality_expression_3", 3, $1, $2, $3 ); }
 	;
 
 and_expression:
-	equality_expression { $$ = pt_generate_node( and_expression+1, "and_expression_1", 1, $1 ); }
+	equality_expression { $$ = $1; }
 	| and_expression '&' equality_expression { /* !Not 120++! */ handle_parse_warning( "Bitwise operators are not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( and_expression+2, "and_expression_2", 3, $1, $2, $3 ); }
 	;
 
 exclusive_or_expression:
-	and_expression { $$ = pt_generate_node( exclusive_or_expression+1, "exclusive_or_expression_1", 1, $1 ); }
+	and_expression { $$ = $1; }
 	| exclusive_or_expression '^' and_expression { /* !Not 120++! */ handle_parse_warning( "Bitwise operators are not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( exclusive_or_expression+2, "exclusive_or_expression_2", 3, $1, $2, $3 ); }
 	;
 
 inclusive_or_expression:
-	exclusive_or_expression { $$ = pt_generate_node( inclusive_or_expression+1, "inclusive_or_expression_1", 1, $1 ); }
+	exclusive_or_expression { $$ = $1; }
 	| inclusive_or_expression '|' exclusive_or_expression { /* !Not 120++! */ handle_parse_warning( "Bitwise operators are not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( inclusive_or_expression+2, "inclusive_or_expression_2", 3, $1, $2, $3 ); }
 	;
 
 logical_and_expression:
-	inclusive_or_expression { $$ = pt_generate_node( logical_and_expression+1, "logical_and_expression_1", 1, $1 ); }
+	inclusive_or_expression { $$ = $1; }
 	| logical_and_expression ANDAND inclusive_or_expression { $$ = pt_generate_node( logical_and_expression+2, "logical_and_expression_2", 3, $1, $2, $3 ); }
 	;
 
 logical_or_expression:
-	logical_and_expression { $$ = pt_generate_node( logical_or_expression+1, "logical_or_expression_1", 1, $1 ); }
+	logical_and_expression { $$ = $1; }
 	| logical_or_expression OROR logical_and_expression { $$ = pt_generate_node( logical_or_expression+2, "logical_or_expression_2", 3, $1, $2, $3 ); }
 	;
 
 conditional_expression:
-	logical_or_expression { $$ = pt_generate_node( conditional_expression+1, "conditional_expression_1", 1, $1 ); }
+	logical_or_expression { $$ = $1; }
 	| logical_or_expression '?' expression_list ':' assignment_expression { $$ = pt_generate_node( conditional_expression+2, "conditional_expression_2", 5, $1, $2, $3, $4, $5 ); }
 	;
 
 constant_expression:
-	conditional_expression { $$ = pt_generate_node( constant_expression, "constant_expression", 1, $1 ); }
+	conditional_expression { $$ = $1; }
 	;
 
 assignment_expression:
-	conditional_expression { $$ = pt_generate_node( assignment_expression+1, "assignment_expression_1", 1, $1 ); }
+	conditional_expression { $$ = $1; }
 	| logical_or_expression assignment_operator assignment_expression { $$ = pt_generate_node( assignment_expression+2, "assignment_expression_2", 3, $1, $2, $3 ); }
-	| throw_expression { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( assignment_expression+3, "assignment_expression_3", 1, $1 ); }
+	| throw_expression { /* !Not 120++! */ /* Warned below */ $$ = $1; }
 	;
 
 assignment_operator:
@@ -523,7 +523,7 @@ assignment_operator:
 	;
 
 expression_list:
-	assignment_expression { $$ = pt_generate_node( expression_list+1, "expression_list_1", 1, $1 ); }
+	assignment_expression { $$ = $1; }
 	| expression_list ',' assignment_expression { $$ = pt_generate_node( expression_list+2, "expression_list_2", 3, $1, $2, $3 ); }
 	;
 
@@ -532,14 +532,14 @@ expression_list:
  *----------------------------------------------------------------------*/
 
 statement:
-	labeled_statement { $$ = pt_generate_node( statement+1, "statement_1", 1, $1 ); }
-	| expression_statement { $$ = pt_generate_node( statement+2, "statement_2", 1, $1 ); }
-	| compound_statement { $$ = pt_generate_node( statement+3, "statement_3", 1, $1 ); }
-	| selection_statement { $$ = pt_generate_node( statement+4, "statement_4", 1, $1 ); }
-	| iteration_statement { $$ = pt_generate_node( statement+5, "statement_5", 1, $1 ); }
-	| jump_statement { $$ = pt_generate_node( statement+6, "statement_6", 1, $1 ); }
-	| declaration_statement { $$ = pt_generate_node( statement+7, "statement_7", 1, $1 ); }
-	| try_block { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( statement+8, "statement_8", 1, $1 ); }
+	labeled_statement { $$ = $1; }
+	| expression_statement { $$ = $1; }
+	| compound_statement { $$ = $1; }
+	| selection_statement { $$ = $1; }
+	| iteration_statement { $$ = $1; }
+	| jump_statement { $$ = $1; }
+	| declaration_statement { $$ = $1; }
+	| try_block { /* !Not 120++! */ /* Warned below */ $$ = $1; }
 	;
 
 labeled_statement:
@@ -557,7 +557,7 @@ compound_statement:
 	;
 
 statement_seq:
-	statement { $$ = pt_generate_node( statement_seq+1, "statement_seq_1", 1, $1 ); }
+	statement { $$ = $1; }
 	| statement_seq statement { $$ = pt_generate_node( statement_seq+2, "statement_seq_2", 2, $1, $2 ); }
 	;
 
@@ -568,7 +568,7 @@ selection_statement:
 	;
 
 condition:
-	expression_list { $$ = pt_generate_node( condition+1, "condition_1", 1, $1 ); }
+	expression_list { $$ = $1; }
 	| type_specifier_seq declarator '=' assignment_expression { $$ = pt_generate_node( condition+2, "condition_2", 4, $1, $2, $3, $4 ); }
 	;
 
@@ -579,8 +579,8 @@ iteration_statement:
 	;
 
 for_init_statement:
-	expression_statement { $$ = pt_generate_node( for_init_statement+1, "for_init_statement_1", 1, $1 ); }
-	| simple_declaration { $$ = pt_generate_node( for_init_statement+2, "for_init_statement_2", 1, $1 ); }
+	expression_statement { $$ = $1; }
+	| simple_declaration { $$ = $1; }
 	;
 
 jump_statement:
@@ -591,7 +591,7 @@ jump_statement:
 	;
 
 declaration_statement:
-	block_declaration { $$ = pt_generate_node( declaration_statement, "declaration_statement", 1, $1 ); }
+	block_declaration { $$ = $1; }
 	;
 
 /*----------------------------------------------------------------------
@@ -599,25 +599,25 @@ declaration_statement:
  *----------------------------------------------------------------------*/
 
 declaration_seq:
-	declaration { $$ = pt_generate_node( declaration_seq+1, "declaration_seq_1", 1, $1 ); }
+	declaration { $$ = $1; }
 	| declaration_seq declaration { $$ = pt_generate_node( declaration_seq+2, "declaration_seq_2", 2, $1, $2 ); }
 	;
 
 declaration:
-	block_declaration { $$ = pt_generate_node( declaration+1, "declaration_1", 1, $1 ); }
+	block_declaration { $$ = $1; }
 	| function_definition { $$ = pt_generate_node( declaration+2, "declaration_2", 1, $1 ); }
 	| template_declaration { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( declaration+3, "declaration_3", 1, $1 ); }
-	| explicit_instantiation { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( declaration+4, "declaration_4", 1, $1 ); }
-	| explicit_specialization { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( declaration+5, "declaration_5", 1, $1 ); }
-	| linkage_specification { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( declaration+6, "declaration_6", 1, $1 ); }
-	| namespace_definition { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( declaration+7, "declaration_7", 1, $1 ); }
+	| explicit_instantiation { /* !Not 120++! */ /* Warned below */ $$ = $1; }
+	| explicit_specialization { /* !Not 120++! */ /* Warned below */ $$ = $1; }
+	| linkage_specification { /* !Not 120++! */ /* Warned below */ $$ = $1; }
+	| namespace_definition { /* !Not 120++! */ /* Warned below */ $$ = $1; }
 	;
 
 block_declaration:
-	simple_declaration { $$ = pt_generate_node( block_declaration+1, "block_declaration_1", 1, $1 ); }
-	| asm_definition { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( block_declaration+2, "block_declaration_2", 1, $1 ); }
-	| namespace_alias_definition { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( block_declaration+3, "block_declaration_3", 1, $1 ); }
-	| using_declaration { /* !Not 120++! */ handle_parse_warning( "This usage of using is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( block_declaration+4, "block_declaration_4", 1, $1 ); }
+	simple_declaration { $$ = $1; }
+	| asm_definition { /* !Not 120++! */ /* Warned below */ $$ = $1; }
+	| namespace_alias_definition { /* !Not 120++! */ /* Warned below */ $$ = $1; }
+	| using_declaration { /* !Not 120++! */ handle_parse_warning( "This usage of using is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = $1; }
 	| using_directive { $$ = pt_generate_node( block_declaration+5, "block_declaration_5", 1, $1 ); }
 	;
 
@@ -627,15 +627,15 @@ simple_declaration:
 	;
 
 decl_specifier:
-	storage_class_specifier { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( decl_specifier+1, "decl_specifier_1", 1, $1 ); }
+	storage_class_specifier { /* !Not 120++! */ /* Warned below */ $$ = $1; }
 	| type_specifier { $$ = pt_generate_node( decl_specifier+2, "decl_specifier_2", 1, $1 ); }
 	| function_specifier { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( decl_specifier+3, "decl_specifier_3", 1, $1 ); }
-	| FRIEND { /* !Not 120++! */ handle_parse_warning( "friend is not supported in 120++ specs.", W_PARSE_UNHANDLED ); $$ = NULL; }
+	| FRIEND { /* !Not 120++! */ handle_parse_warning( "friend is not supported in 120++ specs.", W_PARSE_UNHANDLED ); yylval->production = decl_specifier+4; $$ = NULL; }
 	| TYPEDEF { /* !Not 120++! */ handle_parse_warning( "typedef is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); yylval->production = decl_specifier+5; $$ = $1; }
 	;
 
 decl_specifier_seq:
-	decl_specifier { $$ = pt_generate_node( decl_specifier_seq+1, "decl_specifier_seq_1", 1, $1 ); }
+	decl_specifier { $$ = $1; }
 	| decl_specifier_seq decl_specifier { $$ = pt_generate_node( decl_specifier_seq+2, "decl_specifier_seq_2", 2, $1, $2 ); }
 	;
 
@@ -662,7 +662,7 @@ type_specifier:
 	;
 
 simple_type_specifier:
-	type_name { $$ = pt_generate_node( simple_type_specifier+1, "simple_type_specifier_1", 1, $1 ); }
+	type_name { $$ = $1; }
 	| nested_name_specifier type_name { $$ = pt_generate_node( simple_type_specifier+2, "simple_type_specifier_2", 2, $1, $2 ); }
 	| COLONCOLON nested_name_specifier_opt type_name { $$ = pt_generate_node( simple_type_specifier+3, "simple_type_specifier_3", 3, $1, $2, $3 ); }
 	| VOID { yylval->production = simple_type_specifier+4; $$ = $1; }
@@ -701,17 +701,17 @@ enum_specifier:
 	;
 
 enumerator_list:
-	enumerator_definition { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( enumerator_list+1, "enumerator_list_1", 1, $1 ); }
+	enumerator_definition { /* !Not 120++! */ /* Warned above */ $$ = $1; }
 	| enumerator_list ',' enumerator_definition { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( enumerator_list+2, "enumerator_list_2", 3, $1, $2, $3 ); }
 	;
 
 enumerator_definition:
-	enumerator { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( enumerator_definition+1, "enumerator_definition_1", 1, $1 ); }
+	enumerator { /* !Not 120++! */ /* Warned above */ $$ = $1; }
 	| enumerator '=' constant_expression { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( enumerator_definition+2, "enumerator_definition_2", 3, $1, $2, $3 ); }
 	;
 
 enumerator:
-	identifier { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( enumerator, "enumerator", 1, $1 ); }
+	identifier { /* !Not 120++! */ /* Warned above */ $$ = $1; }
 	;
 
 namespace_definition:
@@ -720,8 +720,8 @@ namespace_definition:
 	;
 
 named_namespace_definition:
-	original_namespace_definition { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( named_namespace_definition+1, "named_namespace_definition_1", 1, $1 ); }
-	| extension_namespace_definition { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( named_namespace_definition+2, "named_namespace_definition_2", 1, $1 ); }
+	original_namespace_definition { /* !Not 120++! */ /* Warned above */ $$ = $1; }
+	| extension_namespace_definition { /* !Not 120++! */ /* Warned above */ $$ = $1; }
 	;
 
 original_namespace_definition:
@@ -748,7 +748,7 @@ qualified_namespace_specifier:
 	COLONCOLON nested_name_specifier namespace_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( qualified_namespace_specifier+1, "qualified_namespace_specifier_1", 3, $1, $2, $3 ); }
 	| COLONCOLON namespace_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( qualified_namespace_specifier+2, "qualified_namespace_specifier_2", 2, $1, $2 ); }
 	| nested_name_specifier namespace_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( qualified_namespace_specifier+3, "qualified_namespace_specifier_3", 2, $1, $2 ); }
-	| namespace_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( qualified_namespace_specifier+4, "qualified_namespace_specifier_4", 1, $1 ); }
+	| namespace_name { /* !Not 120++! */ /* Warned above */ $$ = $1; }
 	;
 
 using_declaration:
@@ -780,7 +780,7 @@ linkage_specification:
  *----------------------------------------------------------------------*/
 
 init_declarator_list:
-	init_declarator { $$ = pt_generate_node( init_declarator_list+1, "init_declarator_list_1", 1, $1 ); }
+	init_declarator { $$ = $1; }
 	| init_declarator_list ',' init_declarator { $$ = pt_generate_node( init_declarator_list+2, "init_declarator_list_2", 3, $1, $2, $3 ); }
 	;
 
@@ -789,12 +789,12 @@ init_declarator:
 	;
 
 declarator:
-	direct_declarator { $$ = pt_generate_node( declarator+1, "declarator_1", 1, $1 ); }
+	direct_declarator { $$ = $1; }
 	| ptr_operator declarator { $$ = pt_generate_node( declarator+2, "declarator_2", 2, $1, $2 ); }
 	;
 
 direct_declarator:
-	declarator_id { $$ = pt_generate_node( direct_declarator+1, "direct_declarator_1", 1, $1 ); }
+	declarator_id { $$ = $1; }
 	| direct_declarator '(' parameter_declaration_clause_opt ')' cv_qualifier_seq exception_specification { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( direct_declarator+2, "direct_declarator_2", 6, $1, $2, $3, $4, $5, $6 ); }
 	| direct_declarator '(' parameter_declaration_clause_opt ')' cv_qualifier_seq { $$ = pt_generate_node( direct_declarator+3, "direct_declarator_3", 5, $1, $2, $3, $4, $5 ); }
 	| direct_declarator '(' parameter_declaration_clause_opt ')' exception_specification { /* !Not 120++! */ /* Warned below */ $$ = pt_generate_node( direct_declarator+4, "direct_declarator_4", 5, $1, $2, $3, $4, $5 ); }
@@ -817,7 +817,7 @@ ptr_operator:
 	;
 
 cv_qualifier_seq:
-	cv_qualifier { $$ = pt_generate_node( cv_qualifier_seq+1, "cv_qualifier_seq_1", 1, $1 ); }
+	cv_qualifier { $$ = $1; }
 	| cv_qualifier cv_qualifier_seq { $$ = pt_generate_node( cv_qualifier_seq+2, "cv_qualifier_seq_2", 2, $1, $2 ); }
 	;
 
@@ -827,14 +827,14 @@ cv_qualifier:
 	;
 
 declarator_id:
-	id_expression { $$ = pt_generate_node( declarator_id+1, "declarator_id_1", 1, $1 ); }
+	id_expression { $$ = $1; }
 	| COLONCOLON id_expression { /* !Not 120++! */ handle_parse_warning( "This usage of :: is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( declarator_id+2, "declarator_id_2", 2, $1, $2 ); }
 	| COLONCOLON nested_name_specifier type_name { /* !Not 120++! */ $$ = pt_generate_node( declarator_id+3, "declarator_id_3", 3, $1, $2, $3 ); }
 	| COLONCOLON type_name { /* !Not 120++! */ handle_parse_warning( "This usage of :: is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( declarator_id+4, "declarator_id_4", 2, $1, $2 ); }
 	;
 
 type_id:
-	type_specifier_seq abstract_declarator_opt { $$ = pt_generate_node( type_id, "type_id", 2, $1, $2 ); }
+	type_specifier_seq abstract_declarator_opt { $$ = $1; }
 	;
 
 type_specifier_seq:
@@ -858,12 +858,12 @@ direct_abstract_declarator:
 parameter_declaration_clause:
 	parameter_declaration_list ELLIPSIS { /* !Not 120++! */ handle_parse_warning( "Variable arguments (ellipsis) is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( parameter_declaration_clause+1, "parameter_declaration_clause_1", 2, $1, $2 ); }
 	| parameter_declaration_list ',' ELLIPSIS { /* !Not 120++! */ handle_parse_warning( "Variable arguments (ellipsis) is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( parameter_declaration_clause+2, "parameter_declaration_clause_2", 3, $1, $2, $3 ); }
-	| parameter_declaration_list { $$ = pt_generate_node( parameter_declaration_clause+3, "parameter_declaration_clause_3", 1, $1 ); }
-	| ELLIPSIS { /* !Not 120++! */ handle_parse_warning( "Variable arguments (ellipsis) is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = pt_generate_node( parameter_declaration_clause+4, "parameter_declaration_clause_4", 1, $1 ); }
+	| parameter_declaration_list { $$ = $1; }
+	| ELLIPSIS { /* !Not 120++! */ handle_parse_warning( "Variable arguments (ellipsis) is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); $$ = $1; }
 	;
 
 parameter_declaration_list:
-	parameter_declaration { $$ = pt_generate_node( parameter_declaration_list+1, "parameter_declaration_list_1", 1, $1 ); }
+	parameter_declaration { $$ = $1; }
 	| parameter_declaration_list ',' parameter_declaration { $$ = pt_generate_node( parameter_declaration_list+2, "parameter_declaration_list_2", 3, $1, $2, $3 ); }
 	;
 
@@ -897,7 +897,7 @@ initializer_clause:
 	;
 
 initializer_list:
-	initializer_clause { $$ = pt_generate_node( initializer_list+1, "initializer_list_1", 1, $1 ); }
+	initializer_clause { $$ = $1; }
 	| initializer_list ',' initializer_clause { $$ = pt_generate_node( initializer_list+2, "initializer_list_2", 3, $1, $2, $3 ); }
 	;
 
@@ -939,7 +939,7 @@ member_declaration:
 	;
 
 member_declarator_list:
-	member_declarator { $$ = pt_generate_node( member_declarator_list+1, "member_declarator_list_1", 1, $1 ); }
+	member_declarator { $$ = $1; }
 	| member_declarator_list ',' member_declarator { $$ = pt_generate_node( member_declarator_list+2, "member_declarator_list_2", 3, $1, $2, $3 ); }
 	;
 
@@ -972,7 +972,7 @@ base_clause:
 	;
 
 base_specifier_list:
-	base_specifier { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( base_specifier_list+1, "base_specifier_list_1", 1, $1 ); }
+	base_specifier { /* !Not 120++! */ /* Warned above */ $$ = $1; }
 	| base_specifier_list ',' base_specifier { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( base_specifier_list+2, "base_specifier_list_2", 3, $1, $2, $3 ); }
 	;
 
@@ -980,7 +980,7 @@ base_specifier:
 	COLONCOLON nested_name_specifier class_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( base_specifier+1, "base_specifier_1", 3, $1, $2, $3 ); }
 	| COLONCOLON class_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( base_specifier+2, "base_specifier_2", 2, $1, $2 ); }
 	| nested_name_specifier class_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( base_specifier+3, "base_specifier_3", 2, $1, $2 ); }
-	| class_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( base_specifier+4, "base_specifier_4", 1, $1 ); }
+	| class_name { /* !Not 120++! */ /* Warned above */ $$ = $1; }
 	| VIRTUAL access_specifier COLONCOLON nested_name_specifier_opt class_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( base_specifier+5, "base_specifier_5", 5, $1, $2, $3, $4, $5 ); }
 	| VIRTUAL access_specifier nested_name_specifier_opt class_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( base_specifier+6, "base_specifier_6", 4, $1, $2, $3, $4 ); }
 	| VIRTUAL COLONCOLON nested_name_specifier_opt class_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( base_specifier+7, "base_specifier_7", 4, $1, $2, $3, $4 ); }
@@ -1018,7 +1018,7 @@ ctor_initializer:
 	;
 
 mem_initializer_list:
-	mem_initializer { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( mem_initializer_list+1, "mem_initializer_list_1", 1, $1 ); }
+	mem_initializer { /* !Not 120++! */ /* Warned above */ $$ = $1; }
 	| mem_initializer ',' mem_initializer_list { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( mem_initializer_list+2, "mem_initializer_list_2", 3, $1, $2, $3 ); }
 	;
 
@@ -1030,8 +1030,8 @@ mem_initializer_id:
 	COLONCOLON nested_name_specifier class_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( mem_initializer_id+1, "mem_initializer_id_1", 3, $1, $2, $3 ); }
 	| COLONCOLON class_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( mem_initializer_id+2, "mem_initializer_id_2", 2, $1, $2 ); }
 	| nested_name_specifier class_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( mem_initializer_id+3, "mem_initializer_id_3", 2, $1, $2 ); }
-	| class_name { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( mem_initializer_id+4, "mem_initializer_id_4", 1, $1 ); }
-	| identifier { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( mem_initializer_id+5, "mem_initializer_id_5", 1, $1 ); }
+	| class_name { /* !Not 120++! */ /* Warned above */ $$ = $1; }
+	| identifier { /* !Not 120++! */ /* Warned above */ $$ = $1; }
 	;
 
 /*----------------------------------------------------------------------
@@ -1173,7 +1173,7 @@ exception_specification:
 	;
 
 type_id_list:
-	type_id { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( type_id_list+1, "type_id_list_1", 1, $1 ); }
+	type_id { /* !Not 120++! */ /* Warned above */ $$ = $1; }
 	| type_id_list ',' type_id { /* !Not 120++! */ /* Warned above */ $$ = pt_generate_node( type_id_list+2, "type_id_list_2", 3, $1, $2, $3 ); }
 
 %%

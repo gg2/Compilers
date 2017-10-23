@@ -3068,7 +3068,7 @@ yyreduce:
 
   case 65:
 #line 289 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ (yyval) = pt_generate_node( EXPORT_opt+1, "EXPORT_opt", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ (yyval) = (yyvsp[0]); }
 #line 3073 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3080,7 +3080,7 @@ yyreduce:
 
   case 67:
 #line 294 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( COMMA_opt+1, "COMMA_opt", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3085 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3092,7 +3092,7 @@ yyreduce:
 
   case 69:
 #line 299 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ (yyval) = pt_generate_node( COLONCOLON_opt+1, "COLONCOLON_opt", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ (yyval) = (yyvsp[0]); }
 #line 3097 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3104,31 +3104,31 @@ yyreduce:
 
   case 71:
 #line 304 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( SEMICOLON_opt+1, "SEMICOLON_opt", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3109 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 72:
 #line 312 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( primary_expression+1, "primary_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3115 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 73:
 #line 313 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( primary_expression+2, "primary_expression_2", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3121 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 74:
 #line 314 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( primary_expression+3, "primary_expression_3", 3, (yyvsp[-2]), (yyvsp[-1]), (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[-2]); }
 #line 3127 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 75:
 #line 315 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( primary_expression+4, "primary_expression_4", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3133 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3140,7 +3140,7 @@ yyreduce:
 
   case 77:
 #line 320 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( id_expression+2, "id_expression_2", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3145 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3152,13 +3152,13 @@ yyreduce:
 
   case 79:
 #line 325 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned below */ (yyval) = pt_generate_node( unqualified_id+2, "unqualified_id_2", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned below */ (yyval) = (yyvsp[0]); }
 #line 3157 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 80:
 #line 326 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned below */ (yyval) = pt_generate_node( unqualified_id+3, "unqualified_id_3", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned below */ (yyval) = (yyvsp[0]); }
 #line 3163 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3206,7 +3206,7 @@ yyreduce:
 
   case 88:
 #line 343 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( postfix_expression+1, "postfix_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3211 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3362,7 +3362,7 @@ yyreduce:
 
   case 114:
 #line 372 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( unary_expression+1, "unary_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3367 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3410,13 +3410,13 @@ yyreduce:
 
   case 122:
 #line 380 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( unary_expression+9, "unary_expression_9", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3415 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 123:
 #line 381 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( unary_expression+10, "unary_expression_10", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3421 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3488,7 +3488,7 @@ yyreduce:
 
   case 135:
 #line 408 "120++parse.y" /* yacc.c:1646  */
-    { /* ?Not 120++? */ (yyval) = pt_generate_node( new_declarator+2, "new_declarator_2", 1, (yyvsp[0]) ); }
+    { /* ?Not 120++? */ (yyval) = (yyvsp[0]); }
 #line 3493 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3536,7 +3536,7 @@ yyreduce:
 
   case 143:
 #line 428 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( cast_expression+1, "cast_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3541 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3548,7 +3548,7 @@ yyreduce:
 
   case 145:
 #line 433 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( pm_expression+1, "pm_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3553 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3566,7 +3566,7 @@ yyreduce:
 
   case 148:
 #line 439 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( multiplicative_expression+1, "multiplicative_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3571 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3590,7 +3590,7 @@ yyreduce:
 
   case 152:
 #line 446 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( additive_expression+1, "additive_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3595 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3608,7 +3608,7 @@ yyreduce:
 
   case 155:
 #line 452 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( shift_expression+1, "shift_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3613 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3626,7 +3626,7 @@ yyreduce:
 
   case 158:
 #line 458 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( relational_expression+1, "relational_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3631 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3656,7 +3656,7 @@ yyreduce:
 
   case 163:
 #line 466 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( equality_expression+1, "equality_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3661 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3674,7 +3674,7 @@ yyreduce:
 
   case 166:
 #line 472 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( and_expression+1, "and_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3679 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3686,7 +3686,7 @@ yyreduce:
 
   case 168:
 #line 477 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( exclusive_or_expression+1, "exclusive_or_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3691 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3698,7 +3698,7 @@ yyreduce:
 
   case 170:
 #line 482 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( inclusive_or_expression+1, "inclusive_or_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3703 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3710,7 +3710,7 @@ yyreduce:
 
   case 172:
 #line 487 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( logical_and_expression+1, "logical_and_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3715 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3722,7 +3722,7 @@ yyreduce:
 
   case 174:
 #line 492 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( logical_or_expression+1, "logical_or_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3727 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3734,7 +3734,7 @@ yyreduce:
 
   case 176:
 #line 497 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( conditional_expression+1, "conditional_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3739 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3746,13 +3746,13 @@ yyreduce:
 
   case 178:
 #line 502 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( constant_expression, "constant_expression", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3751 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 179:
 #line 506 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( assignment_expression+1, "assignment_expression_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3757 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3764,7 +3764,7 @@ yyreduce:
 
   case 181:
 #line 508 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned below */ (yyval) = pt_generate_node( assignment_expression+3, "assignment_expression_3", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned below */ (yyval) = (yyvsp[0]); }
 #line 3769 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3836,7 +3836,7 @@ yyreduce:
 
   case 193:
 #line 526 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( expression_list+1, "expression_list_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3841 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3848,49 +3848,49 @@ yyreduce:
 
   case 195:
 #line 535 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( statement+1, "statement_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3853 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 196:
 #line 536 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( statement+2, "statement_2", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3859 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 197:
 #line 537 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( statement+3, "statement_3", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3865 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 198:
 #line 538 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( statement+4, "statement_4", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3871 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 199:
 #line 539 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( statement+5, "statement_5", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3877 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 200:
 #line 540 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( statement+6, "statement_6", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3883 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 201:
 #line 541 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( statement+7, "statement_7", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3889 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 202:
 #line 542 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned below */ (yyval) = pt_generate_node( statement+8, "statement_8", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned below */ (yyval) = (yyvsp[0]); }
 #line 3895 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3926,7 +3926,7 @@ yyreduce:
 
   case 208:
 #line 560 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( statement_seq+1, "statement_seq_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3931 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3956,7 +3956,7 @@ yyreduce:
 
   case 213:
 #line 571 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( condition+1, "condition_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3961 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3986,13 +3986,13 @@ yyreduce:
 
   case 218:
 #line 582 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( for_init_statement+1, "for_init_statement_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3991 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 219:
 #line 583 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( for_init_statement+2, "for_init_statement_2", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 3997 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4022,13 +4022,13 @@ yyreduce:
 
   case 224:
 #line 594 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( declaration_statement, "declaration_statement", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4027 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 225:
 #line 602 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( declaration_seq+1, "declaration_seq_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4033 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4040,7 +4040,7 @@ yyreduce:
 
   case 227:
 #line 607 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( declaration+1, "declaration_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4045 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4058,49 +4058,49 @@ yyreduce:
 
   case 230:
 #line 610 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned below */ (yyval) = pt_generate_node( declaration+4, "declaration_4", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned below */ (yyval) = (yyvsp[0]); }
 #line 4063 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 231:
 #line 611 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned below */ (yyval) = pt_generate_node( declaration+5, "declaration_5", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned below */ (yyval) = (yyvsp[0]); }
 #line 4069 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 232:
 #line 612 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned below */ (yyval) = pt_generate_node( declaration+6, "declaration_6", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned below */ (yyval) = (yyvsp[0]); }
 #line 4075 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 233:
 #line 613 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned below */ (yyval) = pt_generate_node( declaration+7, "declaration_7", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned below */ (yyval) = (yyvsp[0]); }
 #line 4081 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 234:
 #line 617 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( block_declaration+1, "block_declaration_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4087 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 235:
 #line 618 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned below */ (yyval) = pt_generate_node( block_declaration+2, "block_declaration_2", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned below */ (yyval) = (yyvsp[0]); }
 #line 4093 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 236:
 #line 619 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned below */ (yyval) = pt_generate_node( block_declaration+3, "block_declaration_3", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned below */ (yyval) = (yyvsp[0]); }
 #line 4099 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 237:
 #line 620 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ handle_parse_warning( "This usage of using is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); (yyval) = pt_generate_node( block_declaration+4, "block_declaration_4", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ handle_parse_warning( "This usage of using is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); (yyval) = (yyvsp[0]); }
 #line 4105 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4124,7 +4124,7 @@ yyreduce:
 
   case 241:
 #line 630 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned below */ (yyval) = pt_generate_node( decl_specifier+1, "decl_specifier_1", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned below */ (yyval) = (yyvsp[0]); }
 #line 4129 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4142,7 +4142,7 @@ yyreduce:
 
   case 244:
 #line 633 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ handle_parse_warning( "friend is not supported in 120++ specs.", W_PARSE_UNHANDLED ); (yyval) = NULL; }
+    { /* !Not 120++! */ handle_parse_warning( "friend is not supported in 120++ specs.", W_PARSE_UNHANDLED ); yylval->production = decl_specifier+4; (yyval) = NULL; }
 #line 4147 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4154,7 +4154,7 @@ yyreduce:
 
   case 246:
 #line 638 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( decl_specifier_seq+1, "decl_specifier_seq_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4159 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4244,7 +4244,7 @@ yyreduce:
 
   case 261:
 #line 665 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( simple_type_specifier+1, "simple_type_specifier_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4249 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4406,7 +4406,7 @@ yyreduce:
 
   case 288:
 #line 704 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( enumerator_list+1, "enumerator_list_1", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 4411 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4418,7 +4418,7 @@ yyreduce:
 
   case 290:
 #line 709 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( enumerator_definition+1, "enumerator_definition_1", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 4423 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4430,7 +4430,7 @@ yyreduce:
 
   case 292:
 #line 714 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( enumerator, "enumerator", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 4435 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4448,13 +4448,13 @@ yyreduce:
 
   case 295:
 #line 723 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( named_namespace_definition+1, "named_namespace_definition_1", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 4453 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 296:
 #line 724 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( named_namespace_definition+2, "named_namespace_definition_2", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 4459 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4508,7 +4508,7 @@ yyreduce:
 
   case 305:
 #line 751 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( qualified_namespace_specifier+4, "qualified_namespace_specifier_4", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 4513 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4586,7 +4586,7 @@ yyreduce:
 
   case 318:
 #line 783 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( init_declarator_list+1, "init_declarator_list_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4591 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4604,7 +4604,7 @@ yyreduce:
 
   case 321:
 #line 792 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( declarator+1, "declarator_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4609 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4616,7 +4616,7 @@ yyreduce:
 
   case 323:
 #line 797 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( direct_declarator+1, "direct_declarator_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4621 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4718,7 +4718,7 @@ yyreduce:
 
   case 340:
 #line 820 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( cv_qualifier_seq+1, "cv_qualifier_seq_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4723 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4742,7 +4742,7 @@ yyreduce:
 
   case 344:
 #line 830 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( declarator_id+1, "declarator_id_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4747 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4766,7 +4766,7 @@ yyreduce:
 
   case 348:
 #line 837 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( type_id, "type_id", 2, (yyvsp[-1]), (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[-1]); }
 #line 4771 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4838,19 +4838,19 @@ yyreduce:
 
   case 360:
 #line 861 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( parameter_declaration_clause+3, "parameter_declaration_clause_3", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4843 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 361:
 #line 862 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ handle_parse_warning( "Variable arguments (ellipsis) is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); (yyval) = pt_generate_node( parameter_declaration_clause+4, "parameter_declaration_clause_4", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ handle_parse_warning( "Variable arguments (ellipsis) is not supported in 120++ specs.", W_PARSE_UNSUPPORTED ); (yyval) = (yyvsp[0]); }
 #line 4849 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 362:
 #line 866 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( parameter_declaration_list+1, "parameter_declaration_list_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4855 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -4946,7 +4946,7 @@ yyreduce:
 
   case 378:
 #line 900 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( initializer_list+1, "initializer_list_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 4951 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -5066,7 +5066,7 @@ yyreduce:
 
   case 398:
 #line 942 "120++parse.y" /* yacc.c:1646  */
-    { (yyval) = pt_generate_node( member_declarator_list+1, "member_declarator_list_1", 1, (yyvsp[0]) ); }
+    { (yyval) = (yyvsp[0]); }
 #line 5071 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -5120,7 +5120,7 @@ yyreduce:
 
   case 407:
 #line 975 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( base_specifier_list+1, "base_specifier_list_1", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 5125 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -5150,7 +5150,7 @@ yyreduce:
 
   case 412:
 #line 983 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( base_specifier+4, "base_specifier_4", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 5155 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -5246,7 +5246,7 @@ yyreduce:
 
   case 428:
 #line 1021 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( mem_initializer_list+1, "mem_initializer_list_1", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 5251 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -5282,13 +5282,13 @@ yyreduce:
 
   case 434:
 #line 1033 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( mem_initializer_id+4, "mem_initializer_id_4", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 5287 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
   case 435:
 #line 1034 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( mem_initializer_id+5, "mem_initializer_id_5", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 5293 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 
@@ -5726,7 +5726,7 @@ yyreduce:
 
   case 508:
 #line 1176 "120++parse.y" /* yacc.c:1646  */
-    { /* !Not 120++! */ /* Warned above */ (yyval) = pt_generate_node( type_id_list+1, "type_id_list_1", 1, (yyvsp[0]) ); }
+    { /* !Not 120++! */ /* Warned above */ (yyval) = (yyvsp[0]); }
 #line 5731 "120++parse.tab.c" /* yacc.c:1646  */
     break;
 

@@ -252,7 +252,7 @@ Knuth Variant on Division h(k) = k(k+3) mod m.
 int st_hash( const char* val )
 {
 	int k1 = (int)( *val );
-	int k2 = (int)( val[ strlen(val) ] );
+	int k2 = (int)( val[ strlen(val) - 1 ] );
 	
 	return ( k1 * ( k2 + 3 ) ) % st_size;
 }
