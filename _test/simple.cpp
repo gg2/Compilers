@@ -4,8 +4,10 @@
 
 using namespace std;
 
+/*
 #include<iostream>
 #include<cstdlib>
+*/
 #include<string>
 
 class test 
